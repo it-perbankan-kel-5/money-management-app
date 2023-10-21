@@ -1,4 +1,5 @@
 @extends('components/layout')
+@section('tittle','Rakamin - Dashboard')
 @section('head','Dashboard')
 @section('content')
 <div class="row">
