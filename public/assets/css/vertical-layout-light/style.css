@@ -28298,7 +28298,7 @@ div.tagsinput span.tag a {
 /* Auth */
 .auth .login-half-bg {
   /* background-color: #8972E7; */
-  background: url(../../images/logo-login.png);
+  /* background: url(../../images/logo-login.png); */
   background-size: cover;
 }
 
