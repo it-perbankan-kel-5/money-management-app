@@ -18868,6 +18868,10 @@ button.bg-dark:focus,
 
 .font-weight-light {
   font-weight: 300 !important;
+  text-align: center;
+}
+.text1{
+  text-align: center;
 }
 
 .font-weight-lighter {
@@ -28293,7 +28297,8 @@ div.tagsinput span.tag a {
 /* === Landing screens === */
 /* Auth */
 .auth .login-half-bg {
-  background: url("../../images/auth/login-bg.jpg");
+  /* background-color: #8972E7; */
+  background: url(../../images/logo-login.png);
   background-size: cover;
 }
 
@@ -28378,10 +28383,11 @@ div.tagsinput span.tag a {
 
 .auth .brand-logo {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .auth .brand-logo img {
-  width: 150px;
+  width: 200px;
 }
 
 .auth form .form-group {
