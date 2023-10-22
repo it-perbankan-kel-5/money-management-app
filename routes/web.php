@@ -22,9 +22,9 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/login', function () {
-    return view('api.login');
+    return view('api.signin');
 });
 
 Route::get('/register', function () {
-    return view('api.create_account');
+    return view('api.signup');
 });
