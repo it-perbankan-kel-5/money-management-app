@@ -16,54 +16,32 @@
             <h3 class="text1">Sign Up!</h3>
 
             <form method="POST" action="" class="pt-3">
-              <div class="form-group">
+              <div class="form-group row">
+                <div class="col">
                 <label for="exampleInputEmail">First Name</label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
                     <span class="input-group-text bg-transparent border-right-0">
                       <i class="ti-user text-primary"></i>
                     </span>
-                  </div>
+                    </div>
                   <input type="text" class="form-control form-control-lg border-left-0" id="firstname" placeholder="First Name" required>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
+                <div class="col">
                 <label for="exampleInputEmail">Last Name</label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
                     <span class="input-group-text bg-transparent border-right-0">
                       <i class="ti-user text-primary"></i>
                     </span>
-                  </div>
+                    </div>
                   <input type="text" class="form-control form-control-lg border-left-0" id="lastname" placeholder="Last Name" required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="exampleInputEmail">Phone Number</label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <span class="input-group-text bg-transparent border-right-0">
-                      <i class="ti-user text-primary"></i>
-                    </span>
                   </div>
-                  <input type="number" class="form-control form-control-lg border-left-0" id="phonenumber" placeholder="Phone Number" required>
                 </div>
               </div>
-
-              <div class="form-group">
-                <label for="exampleInputEmail">Address</label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <span class="input-group-text bg-transparent border-right-0">
-                      <i class="ti-user text-primary"></i>
-                    </span>
-                  </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" id="address" placeholder="Address" required>
-                </div>
-              </div>
-
+              
               <div class="form-group">
                 <label for="exampleInputEmail">Username</label>
                 <div class="input-group">
@@ -87,6 +65,30 @@
                   <input type="email" class="form-control form-control-lg border-left-0" id="email" placeholder="Email" required>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail">Address</label>
+                <div class="input-group">
+                  <div class="input-group-prepend bg-transparent">
+                    <span class="input-group-text bg-transparent border-right-0">
+                      <i class="ti-user text-primary"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control form-control-lg border-left-0" id="address" placeholder="Address" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputEmail">Phone Number</label>
+                <div class="input-group">
+                  <div class="input-group-prepend bg-transparent">
+                    <span class="input-group-text bg-transparent border-right-0">
+                      <i class="ti-user text-primary"></i>
+                    </span>
+                  </div>
+                  <input type="number" class="form-control form-control-lg border-left-0" id="phonenumber" placeholder="Phone Number" required>
+                </div>
+              </div>              
 
               <div class="form-group">
                 <label for="exampleInputPassword">Password</label>
