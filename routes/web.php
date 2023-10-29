@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/login', function () {
-    return view('api.signin');
-});
+
+
+// Route::post('/login', function () {
+// });
+// Route::get('/login', function () {
+//     return view('api.signin');
+// });
+
+Route::get('/login', [AuthController::class, 'index']);
+Route::post('/login/signin', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+
 
 Route::get('/register', function () {
     return view('api.signup');

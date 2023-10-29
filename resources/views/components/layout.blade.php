@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>@yield('tittle')</title>
+  <title>@yield('title')</title>
   
   <link rel="shortcut icon" href="{{ asset("assets/images/favicon.png") }}" />
 
@@ -108,19 +108,21 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
+                <i class="ti-settings text-primary pr-1"></i>
                 Settings
               </a>
               <a class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
-                Logout
+                <form method="POST" action="{{ URL('logout') }}">
+                  @csrf
+                  <button class="btn btn-fw p-1" type="submit">Logout</button>
+                </form>
               </a>
             </div>
           </li>
           <li class="nav-item nav-settings d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              <i class="icon-ellipsis"></i>
-            </a>
+            
+            
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
