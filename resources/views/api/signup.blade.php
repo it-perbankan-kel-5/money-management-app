@@ -15,42 +15,32 @@
             </div>
             <h3 class="text1">Sign Up!</h3>
 
-            <form method="POST" action="" class="pt-3">
+            <form method="POST" action="{{ url('/register/signup') }}" class="pt-3">
+              @csrf
+              
               <div class="form-group row">
                 <div class="col">
-                <label for="exampleInputEmail">First Name</label>
+                <label for="first_name">First Name</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                     <span class="input-group-text bg-transparent border-right-0">
                       <i class="ti-user text-primary"></i>
                     </span>
                     </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" id="firstname" placeholder="First Name" required>
+                  <input type="text" class="form-control form-control-lg border-left-0" name="fname" placeholder="First Name" required>
                   </div>
                 </div>
 
                 <div class="col">
-                <label for="exampleInputEmail">Last Name</label>
+                <label for="last_name">Last Name</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                     <span class="input-group-text bg-transparent border-right-0">
                       <i class="ti-user text-primary"></i>
                     </span>
                     </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" id="lastname" placeholder="Last Name" required>
+                  <input type="text" class="form-control form-control-lg border-left-0" name="lname" placeholder="Last Name" required>
                   </div>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="exampleInputEmail">Username</label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <span class="input-group-text bg-transparent border-right-0">
-                      <i class="ti-user text-primary"></i>
-                    </span>
-                  </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" id="username" placeholder="Username" required>
                 </div>
               </div>
 
@@ -62,7 +52,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="email" class="form-control form-control-lg border-left-0" id="email" placeholder="Email" required>
+                  <input type="email" class="form-control form-control-lg border-left-0" name="email" placeholder="Email" required>
                 </div>
               </div>
 
@@ -74,7 +64,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" id="address" placeholder="Address" required>
+                  <input type="text" class="form-control form-control-lg border-left-0" name="address" placeholder="Address" required>
                 </div>
               </div>
               
@@ -86,7 +76,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="number" class="form-control form-control-lg border-left-0" id="phonenumber" placeholder="Phone Number" required>
+                  <input type="number" class="form-control form-control-lg border-left-0" name="phone_number" placeholder="Phone Number" required>
                 </div>
               </div>              
 
@@ -98,7 +88,7 @@
                       <i class="ti-lock text-primary"></i>
                     </span>
                   </div>
-                  <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" required>
+                  <input type="password" class="form-control form-control-lg border-left-0" name="password" placeholder="Password" required>
                 </div>
               </div>
             
@@ -107,6 +97,7 @@
               <div class="text-center mt-4 font-weight-light">
                 Already have an account? <a href="/login" class="text-primary">Sign In</a>
               </div>
+
             </form>
 
           </div>

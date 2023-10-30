@@ -30,15 +30,13 @@ Route::get('/dashboard', function () {
 //     return view('api.signin');
 // });
 
-Route::get('/login', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'signin_index']);
 Route::post('/login/signin', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
+Route::get('/register', [AuthController::class, 'register_index']);
+Route::post('/register/signup', [AuthController::class, 'signup']);
 
-
-Route::get('/register', function () {
-    return view('api.signup');
-});
 Route::get('/budgetin', function () {
     return view('budgetin');
 });

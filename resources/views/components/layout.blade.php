@@ -8,7 +8,6 @@
   <title>@yield('title')</title>
   
   <link rel="shortcut icon" href="{{ asset("assets/images/favicon.png") }}" />
-
   
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset("assets/vendors/feather/feather.css") }}">
@@ -26,6 +25,10 @@
   <link rel="stylesheet" href="{{ asset("assets/css/vertical-layout-light/style.css") }}">
   <!-- endinject -->
 
+  <!-- inject:SweetAlert -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.css">
+  <!-- endinject -->
+  
 </head>
 <body>
   
@@ -443,6 +446,10 @@
 
   <!-- End plugin js for this page -->
 
+  <!-- inject:SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.js"></script>
+  <!-- End plugin js for SweetAlert -->
+
   <!-- inject:js -->
   <script src="{{ asset("assets/js/off-canvas.js>") }}"></script>
   <script src="{{ asset("assets/js/hoverable-collapse.js") }}"></script>
@@ -456,6 +463,8 @@
   <script src="{{ asset("assets/js/budgetin-chart.js") }} "></script>
   <script src="{{ asset("assets/js/Chart.roundedBarCharts.js") }} "></script>
   <!-- End custom js for this page-->
+
+  
 
 </body>
 

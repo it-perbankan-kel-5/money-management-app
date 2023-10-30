@@ -10,6 +10,10 @@
 
   <link rel="shortcut icon" href="{{ asset("assets/images/logo.png") }}" />
   
+  <!-- inject:SweetAlert -->
+  {{-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.8/dist/sweetalert2.min.css" rel="stylesheet"> --}}
+  <!-- endinject -->
+
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset("assets/vendors/feather/feather.css") }}">
   <link rel="stylesheet" href="{{ asset("assets/vendors/ti-icons/css/themify-icons.css") }}">
@@ -30,13 +34,14 @@
 <body>
 
   @yield('auth')
-
-</body>
-
       
   <!-- plugins:js -->
   <script src="{{ asset("assets/vendors/js/vendor.bundle.base.js") }} "></script>
   <!-- endinject -->
+
+  <!-- inject:SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- End plugin js for SweetAlert -->
 
   <!-- Plugin js for this page -->
   <script src="{{ asset("assets/vendors/chart.js/Chart.min.js") }} "></script>
@@ -57,6 +62,34 @@
   <script src="{{ asset("assets/js/dashboard.js") }} "></script>
   <script src="{{ asset("assets/js/Chart.roundedBarCharts.js") }} "></script>
   <!-- End custom js for this page-->
+
+  @if (Session::has('success'))
+        <script>
+            Swal.fire(
+                'Success!!',
+                '{{ Session::get('success') }}',
+                'success'
+            );
+        </script>
+    @endif
+    
+   @if ($errors->any())
+        <script>
+            @foreach ($errors->all() as $error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ $error }}'
+                });
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!'
+                });
+            @endforeach
+        </script>
+    @endif
 
 </body>
 

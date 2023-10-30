@@ -9,31 +9,31 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function index()
+    public function signin_index()
     {
         return view('api.signin');
     }
 
+    public function register_index()
+    {
+        return view('api.signup');
+    }
+
     public function login(Request $request)
     {
-        $url = 'http://127.0.0.1:8000/api/login'; // URL API login
-
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
+        $apiUrl = 'http://127.0.0.1:8000/api/login'; // URL API login
 
         try {
-            // Jika menggunakan HTTP Client Laravel
-            // $response = Http::asForm()->post($url, $data);
 
-            $response = Http::asForm()->post('http://127.0.0.1:8000/api/login', [
+            $response = Http::asForm()->post($$apiUrl, [
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
 
             $statusCode = $response->status();
-            // @dd($response);
+            
+            // @dd($response->json());
+
             if ($statusCode === 200) {
                 $responseData = $response->json();
                 $token = $responseData['access_token'];
@@ -47,13 +47,12 @@ class AuthController extends Controller
                 return redirect('dashboard');
             } else {
                 // Jika login gagal, alihkan kembali ke halaman login dengan pesan kesalahan
-                return redirect('login')->with('error', 'Invalid email or password');
+                return redirect('login')->withErrors('Invalid email or password');
             }
         } catch (\Exception $e) {
             // Handle kesalahan jika terjadi saat mengirim permintaan ke API
             return redirect('login')->with('error', 'Error: ' . $e->getMessage());
         }
-
     }
 
     public function logout(Request $request)
@@ -85,6 +84,42 @@ class AuthController extends Controller
             }
         }
 
-        return redirect()->route('login'); // Alihkan ke halaman login jika token tidak tersedia
+        return redirect('login'); // Alihkan ke halaman login jika token tidak tersedia
     }
+
+    public function signup(Request $request)
+    {
+        $APIurl = 'http://127.0.0.1:8000/api/register'; // URL API login
+
+        try {
+            $response = Http::post($APIurl, [
+                "first_name" => $request->fname,
+                "last_name" => $request->lname,
+                'email' => $request->email,
+                "address" => $request->address,
+                "phone_number" => $request->phone_number,
+                "password" => $request->password,
+            ]);
+
+            $statusCode = $response->status();
+            $responseData = $response->json(); // Ambil data JSON dari respons
+
+            // Tampilkan data JSON untuk debugging
+            // @dd($response->json());
+
+            if ($statusCode === 200) {
+                // Alihkan ke halaman dashboard atau halaman yang sesuai
+                return redirect('login');
+            } else {
+                // Jika register gagal, Anda dapat menangani error di sini atau
+                // mengembalikan ke halaman login dengan pesan kesalahan
+                return redirect('register')->withErrors($responseData['status']);
+            }
+        } catch (\Exception $e) {
+            // Handle kesalahan jika terjadi saat mengirim permintaan ke API
+            return redirect('register')->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+    
 }
