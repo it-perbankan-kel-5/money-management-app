@@ -9236,6 +9236,10 @@ pre code {
   margin-right: -15px;
   margin-left: -15px;
 }
+.column {
+  flex: 50%;
+  padding: 5px;
+}
 
 .no-gutters {
   margin-right: 0;
@@ -20115,7 +20119,7 @@ code {
   margin-right: 0.48rem;
 }
 
-.detailed-report-carousel .carousel-control-prev,
+.detailed-aarousel .carousel-control-prev,
 .detailed-report-carousel .carousel-control-next {
   top: 1.3rem;
   width: 1.875rem;
@@ -22078,6 +22082,14 @@ code {
   margin-bottom: 0;
   opacity: .5;
   font-size: .75rem;
+}
+.card.card-grey {
+  background: #D9D9D9;
+  color: #ffffff;
+}
+
+.card.card-grey:hover {
+  background: #D9D9D9;
 }
 
 .card.card-tale {
