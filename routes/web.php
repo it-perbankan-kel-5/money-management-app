@@ -28,3 +28,6 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('api.signup');
 });
+Route::get('/budgetin', function () {
+    return view('budgetin');
+});

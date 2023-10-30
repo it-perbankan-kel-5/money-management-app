@@ -438,6 +438,7 @@
   <script src="{{ asset("assets/vendors/datatables.net/jquery.dataTables.js") }} "></script>
   <script src="{{ asset("assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js") }} "></script>
   <script src="{{ asset("assets/js/dataTables.select.min.js") }} "></script>
+
   <!-- End plugin js for this page -->
 
   <!-- inject:js -->
@@ -450,6 +451,7 @@
 
   <!-- Custom js for this page-->
   <script src="{{ asset("assets/js/dashboard.js") }} "></script>
+  <script src="{{ asset("assets/js/budgetin-chart.js") }} "></script>
   <script src="{{ asset("assets/js/Chart.roundedBarCharts.js") }} "></script>
   <!-- End custom js for this page-->
 
