@@ -41,7 +41,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="form-group">
                 <label for="exampleInputEmail">Username</label>
                 <div class="input-group">
@@ -77,7 +77,7 @@
                   <input type="text" class="form-control form-control-lg border-left-0" id="address" placeholder="Address" required>
                 </div>
               </div>
-              
+
               <div class="form-group">
                 <label for="exampleInputEmail">Phone Number</label>
                 <div class="input-group">
@@ -88,7 +88,7 @@
                   </div>
                   <input type="number" class="form-control form-control-lg border-left-0" id="phonenumber" placeholder="Phone Number" required>
                 </div>
-              </div>              
+              </div>
 
               <div class="form-group">
                 <label for="exampleInputPassword">Password</label>
@@ -101,7 +101,7 @@
                   <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" required>
                 </div>
               </div>
-            
+
               <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
 
               <div class="text-center mt-4 font-weight-light">
