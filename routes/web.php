@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +24,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-
-
-// Route::post('/login', function () {
-// });
-// Route::get('/login', function () {
-//     return view('api.signin');
-// });
-
 Route::get('/login', [AuthController::class, 'signin_index']);
 Route::post('/login/signin', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
@@ -37,6 +31,6 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register_index']);
 Route::post('/register/signup', [AuthController::class, 'signup']);
 
-Route::get('/budgetin', function () {
-    return view('budgetin');
-});
+Route::get('/profile', [UserController::class, 'index']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);

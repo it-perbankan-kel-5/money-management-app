@@ -63,7 +63,7 @@
   <script src="{{ asset("assets/js/Chart.roundedBarCharts.js") }} "></script>
   <!-- End custom js for this page-->
 
-  @if (Session::has('success'))
+    {{-- @if (Session::has('success'))
         <script>
             Swal.fire(
                 'Success!!',
@@ -73,7 +73,7 @@
         </script>
     @endif
     
-   @if ($errors->any())
+    @if ($errors->any())
         <script>
             @foreach ($errors->all() as $error)
                 Swal.fire({
@@ -81,15 +81,9 @@
                     title: 'Oops...',
                     text: '{{ $error }}'
                 });
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
-                });
             @endforeach
         </script>
-    @endif
+    @endif --}}
 
 </body>
 
