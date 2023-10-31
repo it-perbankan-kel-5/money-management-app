@@ -30609,5 +30609,33 @@ div.tagsinput span.tag a {
     display: none;
   }
 }
+.icon-add {
+  --b: 4px; /* the thickness */
+  width: 40px; /* the size */
+  aspect-ratio: 1;
+  border: 10px solid #4B49AC; /* the outer space */
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#4B49AC 90deg,#fff 0) 
+    calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+    calc(50%  + var(--b))   calc(50%  + var(--b));
+  display: inline-block;
+  border-radius: 50%;
+}
 
+#add-trigger {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  height: 45px;
+  width: 45px;
+  background: #4B49AC;
+  z-index: 99;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border-radius: 100%;
+}
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */

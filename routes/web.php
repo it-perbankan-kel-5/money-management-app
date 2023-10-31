@@ -40,3 +40,6 @@ Route::post('/register/signup', [AuthController::class, 'signup']);
 Route::get('/budgetin', function () {
     return view('budgetin');
 });
+Route::get('/addbudgetin', function () {
+    return view('add_budgetin');
+});
