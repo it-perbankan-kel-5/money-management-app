@@ -16,18 +16,6 @@
             <h3 class="text1">Welcome to FlexiFunds Apps</h3>
             <h5 class="font-weight-light">Happy to see you again!</h5>
 
-            @if ($errors->any())
-              <div class="mt-3 p-3">
-                    <div class="mb-1 alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $item)
-                                <li>{{ $item }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            @endif
-
             <form method="POST" action="{{ url('/login/signin') }}" class="pt-3">
               @csrf
               <div class="form-group">
