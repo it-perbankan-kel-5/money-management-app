@@ -65,7 +65,9 @@ class AuthController extends Controller
                 ])->post($apiUrl);
 
                 $statusCode = $response->status();
-                @dd($response->json());
+                
+                // @dd($response->json());
+
                 if ($statusCode === 200) {
                     Auth::logout(); 
                     session()->forget('access_token'); 
