@@ -61,6 +61,6 @@
 </div>
 
 {{-- Add Budget --}}
-<a href="/addbudgetin"><div id="add-trigger" class=""><i class="icon-add"></i></div></a>
+<a href="/addbudgeting"><div id="add-trigger" class=""><i class="icon-add"></i></div></a>
     
 @endsection
