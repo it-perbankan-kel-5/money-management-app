@@ -26,7 +26,7 @@
                                 <div class="card card-tale" style="opacity: 65%; background-color: #6771CA">
                                     <div class="card-body">
                                         <p class="mb-4 text-light">Balance</p>
-                                        <p class="fs-25 mb-2 text-light">Rp 100.000,-</p>
+                                        <p class="fs-25 mb-2 text-light" id="balance"></p>
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="card card-green" style="opacity: 65%; background-color: #008000">
                                     <div class="card-body">
                                         <p class="mb-4 text-light">Income</p>
-                                        <p class="fs-25 mb-2 text-light">Rp 200.000,-</p>
+                                        <p class="fs-25 mb-2 text-light" id="income"></p>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 <div class="card card-red" style="opacity: 65%; background-color: #FF0000">
                                     <div class="card-body">
                                         <p class="mb-4 text-light">Outcome</p>
-                                        <p class="fs-25 mb-2 text-light">Rp 50.000,-</p>
+                                        <p class="fs-25 mb-2 text-light" id="outcome"></p>
                                     </div>
                                 </div>
                             </div>
@@ -152,4 +152,23 @@
         </div>
     </div>
 
+    <script>
+        // Fungsi untuk mengubah angka menjadi format Rupiah
+        function formatRupiah(angka) {
+            var reverse = angka.toString().split('').reverse().join(''),
+                ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+            return 'Rp. ' + ribuan + ',00';
+        }
+
+        // Angka yang ingin diubah menjadi format Rupiah
+        var balance = 100000;
+        var income = 150000;
+        var outcome = 75000;
+
+        // Mengubah angka menjadi format Rupiah dan menaruhnya pada elemen paragraf
+        document.getElementById('balance').innerHTML = formatRupiah(balance);
+        document.getElementById('income').innerHTML = formatRupiah(income);
+        document.getElementById('outcome').innerHTML = formatRupiah(outcome);
+    </script>
 @endsection

@@ -36,13 +36,13 @@
   @yield('auth')
       
   <!-- inject:SweetAlert -->
-  {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
-  <script src="{{ asset("assets/js/alerts.js") }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {{-- <script src="{{ asset("assets/js/alerts.js") }}"></script> --}}
   <!-- End plugin js for SweetAlert -->
 
   <!-- plugins:js -->
   <script src="{{ asset("assets/vendors/js/vendor.bundle.base.js") }} "></script>
-  <script src="{{ asset("assets/vendors/sweetalert/sweetalert.min.js") }}"></script>
+  {{-- <script src="{{ asset("assets/vendors/sweetalert/sweetalert.min.js") }}"></script> --}}
   <script src="{{ asset("assets/vendors/jquery.avgrund/jquery.avgrund.min.js") }}"></script>
   <!-- endinject -->
 
@@ -67,7 +67,7 @@
   <script src="{{ asset("assets/js/avgrund.js") }}"></script>
   <!-- End custom js for this page-->
 
-    {{-- @if (Session::has('success'))
+    @if (Session::has('success'))
         <script>
             Swal.fire(
                 'Success!!',
@@ -75,8 +75,7 @@
                 'success'
             );
         </script>
-    @endif --}}
-
+    @endif
     
     @if ($errors->any())
         <script>
