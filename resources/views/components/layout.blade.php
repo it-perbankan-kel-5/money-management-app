@@ -28,7 +28,10 @@
   <!-- inject:SweetAlert -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.css">
   <!-- endinject -->
-  
+
+  <!-- inject:Mdi -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.3.67/css/materialdesignicons.min.css" integrity="sha512-nRzny9w0V2Y1/APe+iEhKAwGAc+K8QYCw4vJek3zXhdn92HtKt226zHs9id8eUq+uYJKaH2gPyuLcaG/dE5c7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- endinject -->
 </head>
 <body>
   
@@ -286,6 +289,7 @@
           <!-- chat tab ends -->
         </div>
       </div>
+      
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -297,9 +301,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/budgetin">
-              <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Budgetin</span>
+            <a class="nav-link" href="budgeting">
+              <i class="mdi mdi-wallet menu-icon"></i>
+              <span class="menu-title">Budgeting</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">User Profile</span>
             </a>
           </li>
           {{-- <li class="nav-item">

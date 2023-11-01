@@ -21,33 +21,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $apiUrl = 'http://127.0.0.1:8000/api/login'; // URL API login
+        $APIurl = 'http://127.0.0.1:8000/api/login'; // URL API login
 
         try {
-
-            $response = Http::asForm()->post($$apiUrl, [
+            $response = Http::asForm()->post($APIurl, [
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
 
             $statusCode = $response->status();
-            
-            // @dd($response->json());
+            $responseData = $response->json();
 
             if ($statusCode === 200) {
-                $responseData = $response->json();
                 $token = $responseData['access_token'];
 
-                // Simpan token ke dalam sesi atau database, sesuai dengan kebutuhan Anda
-                // Anda juga dapat menyimpan token di dalam cookie atau lokal storage jika diperlukan
-                // Contoh simpan token ke dalam sesi:
+                // Simpan token ke dalam sesi
                 session(['access_token' => $token]);
 
-                // Alihkan ke halaman dashboard atau ke halaman yang sesuai
                 return redirect('dashboard');
             } else {
                 // Jika login gagal, alihkan kembali ke halaman login dengan pesan kesalahan
-                return redirect('login')->withErrors('Invalid email or password');
+                return redirect('login')->withErrors(['error' => 'Invalid email or password']);
             }
         } catch (\Exception $e) {
             // Handle kesalahan jika terjadi saat mengirim permintaan ke API
@@ -55,12 +49,13 @@ class AuthController extends Controller
         }
     }
 
+
     public function logout(Request $request)
     {
-        $token = session('access_token'); // Ambil token akses dari sesi atau tempat penyimpanan lain (sesuai dengan cara Anda menyimpannya)
+        $token = session('access_token'); 
 
         if ($token) {
-            $apiUrl = 'http://127.0.0.1:8000/api/logout'; // URL API logout
+            $apiUrl = 'http://127.0.0.1:8000/api/logout'; 
 
             try {
                 // Jika menggunakan HTTP Client Laravel
@@ -70,26 +65,26 @@ class AuthController extends Controller
                 ])->post($apiUrl);
 
                 $statusCode = $response->status();
-                // @dd($response->json());
+                @dd($response->json());
                 if ($statusCode === 200) {
-                    Auth::logout(); // Melakukan logout pengguna
-                    session()->forget('access_token'); // Menghapus token akses dari sesi
+                    Auth::logout(); 
+                    session()->forget('access_token'); 
 
-                    return redirect('login'); // Alihkan ke halaman login setelah logout berhasil
+                    return redirect('login');
                 } else {
-                    return back()->with('error', 'Failed to logout'); // Alihkan kembali ke halaman sebelumnya dengan pesan kesalahan jika logout gagal
+                    return back()->with('error', 'Failed to logout');
                 }
             } catch (\Exception $e) {
-                return back()->with('error', 'Error: ' . $e->getMessage()); // Alihkan kembali ke halaman sebelumnya dengan pesan kesalahan jika terjadi kesalahan saat mengirim permintaan ke API logout
+                return back()->with('error', 'Error: ' . $e->getMessage());
             }
         }
 
-        return redirect('login'); // Alihkan ke halaman login jika token tidak tersedia
+        return redirect('login');
     }
 
     public function signup(Request $request)
     {
-        $APIurl = 'http://127.0.0.1:8000/api/register'; // URL API login
+        $APIurl = 'http://127.0.0.1:8000/api/register'; 
 
         try {
             $response = Http::post($APIurl, [
@@ -102,21 +97,16 @@ class AuthController extends Controller
             ]);
 
             $statusCode = $response->status();
-            $responseData = $response->json(); // Ambil data JSON dari respons
+            $responseData = $response->json(); 
 
-            // Tampilkan data JSON untuk debugging
             // @dd($response->json());
 
             if ($statusCode === 200) {
-                // Alihkan ke halaman dashboard atau halaman yang sesuai
                 return redirect('login');
             } else {
-                // Jika register gagal, Anda dapat menangani error di sini atau
-                // mengembalikan ke halaman login dengan pesan kesalahan
                 return redirect('register')->withErrors($responseData['status']);
             }
         } catch (\Exception $e) {
-            // Handle kesalahan jika terjadi saat mengirim permintaan ke API
             return redirect('register')->with('error', 'Error: ' . $e->getMessage());
         }
     }

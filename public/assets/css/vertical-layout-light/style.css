@@ -13784,10 +13784,10 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background: #FFF;
   background-clip: border-box;
-  border: 1px solid #e3e3e3;
-  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  border-radius: 12px;
 }
 
 .card > hr {
@@ -13847,8 +13847,8 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid #e3e3e3;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.20);;
 }
 
 .card-header:first-child {
@@ -13857,8 +13857,8 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-top: 1px solid #e3e3e3;
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.20);;
 }
 
 .card-footer:last-child {
@@ -24645,8 +24645,8 @@ dl li {
 }
 
 .table td img, .jsgrid .jsgrid-table td img {
-  width: 36px;
-  height: 36px;
+  width: 15px;
+  height: 15px;
   border-radius: 100%;
 }
 

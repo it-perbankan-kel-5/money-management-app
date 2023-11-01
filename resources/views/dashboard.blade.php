@@ -7,6 +7,11 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight">Welcome back, <strong>Billie</strong></h3>
+                    @if(session()->has('access_token'))
+                        <p>Token yang tersimpan dalam session: {{ session('access_token') }}</p>
+                    @else
+                        <p>Token tidak ditemukan dalam session.</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -76,21 +81,24 @@
                                         <td>Bank BNI</td>
                                         <td>August 20, 2023</td>
                                         <td>Rp350.000</td>
-                                        <td></td>
+                                        <td><img src="{{ asset('assets/images/dashboard/panah-dn.png') }}" alt="">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">12345678908</th>
                                         <td>Bank BRI</td>
                                         <td>August 22, 2023</td>
                                         <td>Rp250.000</td>
-                                        <td><img src="public/assets/images/dashboard/panah-up.png" alt=""></td>
+                                        <td><img src="{{ asset('assets/images/dashboard/panah-up.png') }}" alt="">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">12345678907</th>
                                         <td>Bank BTN</td>
                                         <td>August 25, 2023</td>
                                         <td>Rp300.000</td>
-                                        <td></td>
+                                        <td><img src="{{ asset('assets/images/dashboard/panah-up.png') }}" alt="">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -105,6 +113,39 @@
                     <div class="card-body">
                         <h3 class="card-title">Budget Limit</h3>
                         <p class="card-text">Limit on 1 Month</p>
+                        <p class="card-text">Rp50.000</p>
+                        <div class="progress" style="height: 15px">
+                            <div class="progress-bar w-25" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Saving Plan</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Beli Skin Free Fire</h4>
+                                    <p class="card-text">Saving: Rp300.000</p>
+                                    <div class="progress" style="height: 15px">
+                                        <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="card-body">
+                                <h5>Beli Skin Free Fire</h4>
+                                    <p class="card-text">Saving: Rp300.000</p>
+                                    <div class="progress" style="height: 15px">
+                                        <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

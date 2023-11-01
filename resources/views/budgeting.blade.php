@@ -1,6 +1,6 @@
 @extends('components/layout')
 @section('tittle','Rakamin - Dashboard')
-@section('head','Dashboard')
+@section('head','Budgeting')
 @section('content')
 <div class="row"></div>
 <div class="row">
