@@ -7,6 +7,11 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight">Welcome back, <strong>Billie</strong></h3>
+                    @if(session()->has('access_token'))
+                        <p>Token yang tersimpan dalam session: {{ session('access_token') }}</p>
+                    @else
+                        <p>Token tidak ditemukan dalam session.</p>
+                    @endif
                 </div>
             </div>
         </div>

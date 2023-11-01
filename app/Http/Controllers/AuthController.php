@@ -24,35 +24,31 @@ class AuthController extends Controller
         $APIurl = 'http://127.0.0.1:8000/api/login'; // URL API login
 
         try {
-
             $response = Http::asForm()->post($APIurl, [
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
 
-            $statusGet = $response->status();
-            $statusCode = $response->json(['status']);
-            
-            // @dd($response->json(['status']));
-            // @dd($response->json());
+            $statusCode = $response->status();
+            $responseData = $response->json();
 
             if ($statusCode === 200) {
-                $responseData = $response->json();
                 $token = $responseData['access_token'];
 
+                // Simpan token ke dalam sesi
                 session(['access_token' => $token]);
 
-                
                 return redirect('dashboard');
             } else {
-                
-                return redirect('login')->withErrors('Invalid email or password');
+                // Jika login gagal, alihkan kembali ke halaman login dengan pesan kesalahan
+                return redirect('login')->withErrors(['error' => 'Invalid email or password']);
             }
         } catch (\Exception $e) {
-            
+            // Handle kesalahan jika terjadi saat mengirim permintaan ke API
             return redirect('login')->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
 
     public function logout(Request $request)
     {

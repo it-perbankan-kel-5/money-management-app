@@ -1,5 +1,5 @@
-@extends('components/layout')
-@section('tittle','Rakamin - Dashboard')
+@extends('components/layout') {{-- Pastikan ini sesuai dengan nama layout Anda --}}
+@section('title','Rakamin - Profile')
 @section('head','User Profile')
 @section('content')
 <div class="row"></div>
@@ -25,24 +25,25 @@
                   <table class="table">
                       <tr>
                           <td>Name:</td>
-                          <td>{{ $profile->fname }} {{ $profile->lname }}</td>
+                          <td>{{ $profile['first_name'] }} {{ $profile['last_name'] }}</td>
                       </tr>
                       <tr>
                           <td>Email:</td>
-                          <td>{{ $profile->email }}</td>
+                          <td>{{ $profile['email'] }}</td>
                       </tr>
                       <tr>
                           <td>Phone:</td>
-                          <td>{{ $profile->phone_number }}</td>
+                          <td>{{ $profile['phone_number'] }}</td>
                       </tr>
                       <tr>
                           <td>Address:</td>
-                          <td>{{ $profile->address }}</td>
+                          <td>{{ $profile['address'] }}</td>
                       </tr>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-    
-@endsection
+        </div>
+</div>
+@endsection {{-- Pastikan ini sesuai dengan nama section yang digunakan --}}

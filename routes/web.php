@@ -20,9 +20,7 @@ Route::get('/', function () {
     return view('components.layout');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+
 
 Route::get('/login', [AuthController::class, 'signin_index']);
 Route::post('/login/signin', [AuthController::class, 'login']);
@@ -34,3 +32,7 @@ Route::post('/register/signup', [AuthController::class, 'signup']);
 Route::get('/profile', [UserController::class, 'index']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::get('/budgeting', function () {
+    return view('budgeting');
+});

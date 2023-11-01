@@ -8,6 +8,18 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        // Mengambil token dari session
+        $token = session('access_token');
+
+        if (!$token) {
+            return redirect('login')->withErrors('Token not found.');
+        }
+
+        // Kemudian, tampilkan tampilan dashboard
+        return view('dashboard', ['token' => $token]);
+
+        @dd($token);
+
+
     }
 }

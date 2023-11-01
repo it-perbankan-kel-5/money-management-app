@@ -9,10 +9,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        // Mengambil token dari session
+        // Mengambil token dari sesi
         $token = session('access_token');
 
-        $APIurl = 'http://127.0.0.1:8000/api/get_profile';
+        if (!$token) {
+            return redirect('login')->withErrors('Token not found.');
+        }
+
+        $APIurl = 'http://127.0.0.1:8000/api/user';
 
         try {
             $response = Http::withHeaders([
@@ -20,18 +24,21 @@ class UserController extends Controller
             ])->get($APIurl);
 
             $statusCode = $response->status();
+            $responseData = $response->json();
 
             if ($statusCode === 200) {
-                $responseData = $response->json();
 
-                return view('profile', ['profile' => $responseData['data']]);
+                $profile = $responseData;
+
+                // dd($response);
+                
+                return view('profile', compact('profile'));
             } else {
                 return redirect('dashboard')->withErrors('Failed to retrieve profile.');
             }
         } catch (\Exception $e) {
+            // Handle kesalahan jika terjadi saat mengirim permintaan ke API
             return redirect('dashboard')->with('error', 'Error: ' . $e->getMessage());
         }
-        
-        return view('profile');
     }
 }
