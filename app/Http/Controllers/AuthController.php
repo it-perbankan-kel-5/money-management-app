@@ -35,7 +35,7 @@ class AuthController extends Controller
             return redirect('dashboard')->with('success', 'login berhasil');
         } else {
             if (array_key_exists('message', $doLogin->json())) {
-               
+
                 error($doLogin->json('message')); // get message
 
                 return redirect('login')->withErrors($doLogin->json('status'));
@@ -48,10 +48,10 @@ class AuthController extends Controller
 
     // public function logout(Request $request)
     // {
-    //     $token = session('access_token'); 
+    //     $token = session('access_token');
 
     //     if ($token) {
-    //         $apiUrl = 'http://127.0.0.1:8000/api/logout'; 
+    //         $apiUrl = 'http://127.0.0.1:8000/api/logout';
 
     //         try {
     //             // Jika menggunakan HTTP Client Laravel
@@ -65,8 +65,8 @@ class AuthController extends Controller
     //             // @dd($response->json());
 
     //             if ($statusCode === 200) {
-    //                 Auth::logout(); 
-    //                 session()->forget('access_token'); 
+    //                 Auth::logout();
+    //                 session()->forget('access_token');
 
     //                 return redirect('login');
     //             } else {
@@ -121,35 +121,5 @@ class AuthController extends Controller
             return redirect('rekening')->withErrors($doPost->json());
         }
     }
-
-    // public function signup(Request $request)
-    // {
-    //     $APIurl = 'http://127.0.0.1:8000/api/register'; 
-
-    //     try {
-    //         $response = Http::post($APIurl, [
-    //             "first_name" => $request->fname,
-    //             "last_name" => $request->lname,
-    //             'email' => $request->email,
-    //             "address" => $request->address,
-    //             "phone_number" => $request->phone_number,
-    //             "password" => $request->password,
-    //         ]);
-
-    //         $statusCode = $response->status();
-    //         $responseData = $response->json(); 
-
-    //         // @dd($response->json());
-
-    //         if ($statusCode === 200) {
-    //             return redirect('login');
-    //         } else {
-    //             return redirect('register')->withErrors($responseData['status']);
-    //         }
-    //     } catch (\Exception $e) {
-    //         return redirect('register')->with('error', 'Error: ' . $e->getMessage());
-    //     }
-    // }
-
     
 }
