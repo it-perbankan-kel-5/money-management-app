@@ -10,12 +10,13 @@
 </head>
 <body>
 @if(session()->has('data'))
+{{--    <p>{{session()->get('data')['first_name']}}</p>--}}
     @foreach(session()->get('data') as $data)
-        <p>{{$data['no_rekening']}}</p>
-        <p>{{$data['rekening_type']}}</p>
-        <p>{{$data['description']}}</p>
-        <p>{{$data['alias']}}</p>
-        <p>{{$data['balance']}}</p>
+{{--        <p>{{ json_encode(session()->get('data')['id'], 168) }}</p>--}}
+        <p>{{$data['id']}}</p>
+{{--        <p>{{$data->id}}</p>--}}
+{{--        <p>{{$data['alias']}}</p>--}}
+{{--        <p>{{$data['balance']}}</p>--}}
     @endforeach
 @endif
 

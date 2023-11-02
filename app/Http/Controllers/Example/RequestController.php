@@ -52,13 +52,15 @@ class RequestController extends Controller
 
     public function postRequest() {
         $doPost = Http::contentType('application/json')
-            ->withToken(session()->get('user_token'))
+            ->withToken('19|7rVKFIdh06Yzo1rZ1i60SUBrghODw1rfy3AxSYJ2b2f0c915')
             ->post(API_URL . '/user/rekening', [
-                "rekening_number" => "112312415123",
+                "rekening_number" => "112312415100",
                 "rekening_description" => "test",
                 "rekening_alias" => "test",
                 "rekening_type" => "2"
             ]);
+
+        dd($doPost->body());
 
         if($doPost->successful()) {
             return redirect('request-success')->with('success', 'Tambah Rekening berhasil');
@@ -121,10 +123,11 @@ class RequestController extends Controller
     public function getRequest() {
         $doRetrive = Http::accept('application/json')
             ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user/rekening');
+            ->get(API_URL . '/user');
 
         if($doRetrive->successful()) {
-            return redirect('request-success')->with('data', $doRetrive->json('data'));
+//            dd($doRetrive);
+            return redirect('request-success')->with('data', $doRetrive->json());
         } else {
             if(array_key_exists('message', $doRetrive->json())) {
 //                dd($doDelete->json('message'));
@@ -134,7 +137,7 @@ class RequestController extends Controller
                 return redirect('request-error')->withErrors($doRetrive->json('status'));
             }
 
-            return redirect('request-error')->withErrors($doRetrive->json());
+            return redirect('request-error')->withErrors($doRetrive->body());
         }
     }
 }
