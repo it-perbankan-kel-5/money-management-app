@@ -89,8 +89,7 @@
                                         <td>Bank BRI</td>
                                         <td>August 22, 2023</td>
                                         <td>Rp250.000</td>
-                                        <td><img src="{{ asset('assets/images/dashboard/panah-up.png') }}" alt="">
-                                        </td>
+                                        <td><i class="fa-arrow-circle-o-up"></i></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">12345678907</th>

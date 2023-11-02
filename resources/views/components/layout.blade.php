@@ -26,7 +26,8 @@
   <!-- endinject -->
 
   <!-- inject:SweetAlert -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.css">
+  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.css"> --}}
+  <link rel="stylesheet" href="{{ asset("assets/vendors/font-awesome/css/font-awesome.min.css") }}">
   <!-- endinject -->
 
   <!-- inject:Mdi -->
@@ -39,7 +40,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{{ asset("assets/images/logo.svg")}}" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset("assets/images/FlexiFund.svg")}}" class="mr-2" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset("assets/images/logo-mini.svg")}}" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
