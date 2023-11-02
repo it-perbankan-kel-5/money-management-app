@@ -446,7 +446,7 @@
   <!-- End plugin js for this page -->
 
   <!-- inject:SweetAlert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- End plugin js for SweetAlert -->
 
   <!-- inject:js -->
@@ -463,7 +463,7 @@
   <script src="{{ asset("assets/js/Chart.roundedBarCharts.js") }} "></script>
   <!-- End custom js for this page-->
 
-  @if (Session::has('success'))
+    @if(session()->has('success'))
         <script>
             const Toast = Swal.mixin({
             toast: true,
@@ -479,7 +479,7 @@
 
             Toast.fire({
             icon: 'success',
-            title: '{{ Session::get('success') }}'
+            title: '{{ session()->get('success') }}'
             })
         </script>
     @endif

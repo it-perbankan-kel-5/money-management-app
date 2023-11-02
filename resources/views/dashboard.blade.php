@@ -55,6 +55,7 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-title">Analytic</p>
+                            
                             <canvas id="order-chart"></canvas>
                         </div>
                     </div>

@@ -53,7 +53,7 @@ class RekeningController extends Controller
         ]);
 
         if ($doPost->successful()) {
-            return view('rekening')->with('success', 'Tambah Rekening berhasil');
+            return redirect('rekening')->with('success', 'Tambah Rekening berhasil');
         } else {
             if (array_key_exists('message', $doPost->json())) {
                 //                dd($doPost->json('message'));
