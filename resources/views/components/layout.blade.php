@@ -463,7 +463,38 @@
   <script src="{{ asset("assets/js/Chart.roundedBarCharts.js") }} "></script>
   <!-- End custom js for this page-->
 
-  
+  @if (Session::has('success'))
+        <script>
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({
+            icon: 'success',
+            title: '{{ Session::get('success') }}'
+            })
+        </script>
+    @endif
+    
+    @if ($errors->any())
+        <script>
+            @foreach ($errors->all() as $item)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ $item }}'
+                });
+            @endforeach
+        </script>
+    @endif
 
 </body>
 

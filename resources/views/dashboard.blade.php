@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight">Welcome back, <strong>Billie</strong></h3>
-                    @if(session()->has('access_token'))
-                        <p>Token yang tersimpan dalam session: {{ session('access_token') }}</p>
+                    @if(session()->has('user_token'))
+                        <p>Token yang tersimpan dalam session: {{ session('user_token') }}</p>
                     @else
                         <p>Token tidak ditemukan dalam session.</p>
                     @endif
@@ -81,7 +81,7 @@
                                         <td>Bank BNI</td>
                                         <td>August 20, 2023</td>
                                         <td>Rp350.000</td>
-                                        <td><img src="{{ asset('assets/images/dashboard/panah-dn.png') }}" alt="">
+                                        <td><img src="{{ asset('assets/images/dashboard/arrow-down.svg') }}" alt="">
                                         </td>
                                     </tr>
                                     <tr>
@@ -89,14 +89,14 @@
                                         <td>Bank BRI</td>
                                         <td>August 22, 2023</td>
                                         <td>Rp250.000</td>
-                                        <td><i class="fa-arrow-circle-o-up"></i></td>
+                                        <td><img src="{{ asset('assets/images/dashboard/arrow-up.svg') }}" alt="">
                                     </tr>
                                     <tr>
                                         <th scope="row">12345678907</th>
                                         <td>Bank BTN</td>
                                         <td>August 25, 2023</td>
                                         <td>Rp300.000</td>
-                                        <td><img src="{{ asset('assets/images/dashboard/panah-up.png') }}" alt="">
+                                        <td><img src="{{ asset('assets/images/dashboard/arrow-up.svg') }}" alt="">
                                         </td>
                                     </tr>
                                 </tbody>

@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Mengambil token dari session
-        $token = session('access_token');
+        $token = session('user_token');
 
         if (!$token) {
             return redirect('login')->withErrors('Token not found.');

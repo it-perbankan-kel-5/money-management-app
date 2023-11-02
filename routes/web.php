@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -42,3 +43,8 @@ Route::get('/budgeting', function () {
 Route::get('/addbudgeting', function () {
     return view('add_budgeting');
 });
+
+Route::get('/rekening', [RekeningController::class, 'index']);
+Route::post('/rekening/add', [RekeningController::class, 'add_rekening']);
+
+
