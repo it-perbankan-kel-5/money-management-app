@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-4">
               <!-- User Profile Image -->
-              
+
               <div class="card">
                 <img src="{{ asset("assets/images/faces/face28.jpg") }}" alt="User Profile" class="card-img-top">
                 <div class="card-body text-center">
@@ -24,28 +24,31 @@
                 <div class="card-body">
                   <h4 class="card-title">User Profile</h4>
 
-                @if(session()->has('data'))
-                  @foreach(session()->get('data') as $data)
+                @if(!empty($data_profile))
+{{--                    <h1>data ada</h1>--}}
+{{--                  @foreach(session()->get('data') as $data)--}}
                   <table class="table">
                       <tr>
                           <td>Name:</td>
-                          <td>{{ $data['first_name'] }} {{ $data['last_name'] }}</td>
+                          <td>{{ $data_profile['first_name'] }} {{ $data_profile['last_name'] }}</td>
                       </tr>
                       <tr>
                           <td>Email:</td>
-                          <td>{{ $data['email'] }}</td>
+                          <td>{{ $data_profile['email'] }}</td>
                       </tr>
                       <tr>
                           <td>Phone:</td>
-                          <td>{{ $data['phone_number'] }}</td>
+                          <td>{{ $data_profile['phone_number'] }}</td>
                       </tr>
                       <tr>
                           <td>Address:</td>
-                          <td>{{ $data['address'] }}</td>
+                          <td>{{ $data_profile['address'] }}</td>
                       </tr>
                   </table>
-                  @endforeach
-                @endif
+{{--                  @endforeach--}}
+{{--                    @else--}}
+{{--                        <h2>gaada</h2>--}}
+                    @endif
                 </div>
               </div>
             </div>
