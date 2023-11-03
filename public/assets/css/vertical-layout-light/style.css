@@ -24633,8 +24633,8 @@ dl li {
 }
 
 .table td img, .jsgrid .jsgrid-table td img {
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
 }
 
@@ -25374,6 +25374,18 @@ dl li {
 .profile-feed-item {
   padding: 1.5rem 0;
   border-bottom: 1px solid #CED4DA;
+}
+
+/* profile */
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #5457bc;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgb(84, 87, 188), rgba(253, 160, 133, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgb(84, 87, 188), rgba(253, 160, 133, 1))
 }
 
 /* Pricing table */

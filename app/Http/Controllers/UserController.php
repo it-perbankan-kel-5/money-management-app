@@ -10,63 +10,33 @@ define('API_URL', 'http://127.0.0.1:8000/api');
 
 class UserController extends Controller
 {
-    // public function index()
-    // {
-    //     // Mengambil token dari sesi
-    //     $token = session('user_token');
-
-    //     if (!$token) {
-    //         return redirect('login')->withErrors('Token not found.');
-    //     }
-
-    //     $APIurl = 'http://127.0.0.1:8000/api/user';
-
-    //     try {
-    //         $response = Http::withHeaders([
-    //             'Authorization' => 'Bearer ' . $token,
-    //         ])->get($APIurl);
-
-    //         $statusCode = $response->status();
-    //         $responseData = $response->json();
-
-    //         if ($statusCode === 200) {
-
-    //             $profile = $responseData;
-
-    //             // dd($response);
-
-    //             return view('profile', compact('profile'));
-    //         } else {
-    //             return redirect('dashboard')->withErrors('Failed to retrieve profile.');
-    //         }
-    //     } catch (\Exception $e) {
-    //         // Handle kesalahan jika terjadi saat mengirim permintaan ke API
-    //         return redirect('dashboard')->with('error', 'Error: ' . $e->getMessage());
-    //     }
-    // }
-
     public function index()
     {
-        $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user');
-
-        if ($doRetrive->successful()) {
-            dd($doRetrive->json());
-
-            return view('profile')->with('data', $doRetrive->json());
-        } else {
-            if (array_key_exists('message', $doRetrive->json())) {
-                //                dd($doDelete->json('message'));
-                error($doRetrive->json('message')); // get message
-
-                // return error with status
-                return redirect('dashboard')->withErrors($doRetrive->json('status'));
-            }
-
-            return redirect('dashboard')->withErrors($doRetrive->json());
-        }
+       return view('profile');
     }
+
+    // public function index()
+    // {
+    //     $doRetrive = Http::accept('application/json')
+    //     ->withToken(session()->get('user_token'))
+    //         ->get(API_URL . '/user');
+
+    //     if ($doRetrive->successful()) {
+    //         dd($doRetrive->json());
+
+    //         return view('profile')->with('data', $doRetrive->json());
+    //     } else {
+    //         if (array_key_exists('message', $doRetrive->json())) {
+    //             //                dd($doDelete->json('message'));
+    //             error($doRetrive->json('message')); // get message
+
+    //             // return error with status
+    //             return redirect('dashboard')->withErrors($doRetrive->json('status'));
+    //         }
+
+    //         return redirect('dashboard')->withErrors($doRetrive->json());
+    //     }
+    // }
 
     public function edit_user_profile(Request $request)
     {
