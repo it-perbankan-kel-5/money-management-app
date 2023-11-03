@@ -25,9 +25,8 @@
   <link rel="stylesheet" href="{{ asset("assets/css/vertical-layout-light/style.css") }}">
   <!-- endinject -->
 
-  <!-- inject:SweetAlert -->
-  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@12.4.2/dist/sweetalert2.min.css"> --}}
-  <link rel="stylesheet" href="{{ asset("assets/vendors/font-awesome/css/font-awesome.min.css") }}">
+  <!-- inject:font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- endinject -->
 
   <!-- inject:Mdi -->
@@ -311,6 +310,12 @@
             <a class="nav-link" href="profile">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">User Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rekening">
+              <i class="fa-solid fa-money-check-dollar menu-icon"></i>
+              <span class="menu-title">Rekening</span>
             </a>
           </li>
           {{-- <li class="nav-item">

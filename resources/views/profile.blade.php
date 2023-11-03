@@ -1,4 +1,4 @@
-@extends('components/layout') {{-- Pastikan ini sesuai dengan nama layout Anda --}}
+@extends('components/layout')
 @section('title','Rakamin - Profile')
 @section('head','User Profile')
 @section('content')
