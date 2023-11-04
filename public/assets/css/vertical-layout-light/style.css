@@ -14490,7 +14490,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 .progress-bar {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: baseline;
   overflow: hidden;
   color: #fff;
   text-align: center;
