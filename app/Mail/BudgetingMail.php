@@ -27,7 +27,7 @@ class BudgetingMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Budgeting Mail',
+            subject: 'Saving Mail',
         );
     }
 
@@ -37,7 +37,7 @@ class BudgetingMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.orders.budgeting_mail',
+            markdown: 'emails.orders.saving_mail',
         );
     }
 

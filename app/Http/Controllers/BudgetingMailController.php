@@ -10,6 +10,6 @@ class BudgetingMailController extends Controller
 {
     public function sendMail(){
         Mail::to('mulyanancr2@gmail.com')->send(new BudgetingMail());
-        return view('emails.orders.budgeting_mail');
+        return view('emails.orders.saving_mail');
     }
 }
