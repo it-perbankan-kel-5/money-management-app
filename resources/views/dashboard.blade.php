@@ -6,8 +6,8 @@
         <div class="col-md-12 grid-margin">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight">Welcome back, <strong>Billie</strong></h3>
-                    @if(session()->has('user_token'))
+                    <h3 class="font-weight">Welcome back, <strong>Atsumichi</strong></h3>
+                    @if (session()->has('user_token'))
                         <p>Token yang tersimpan dalam session: {{ session('user_token') }}</p>
                     @else
                         <p>Token tidak ditemukan dalam session.</p>
@@ -55,7 +55,7 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-title">Analytic</p>
-                            
+
                             <canvas id="order-chart"></canvas>
                         </div>
                     </div>
@@ -113,7 +113,10 @@
                     <div class="card-body">
                         <h3 class="card-title">Budget Limit</h3>
                         <p class="card-text">Limit on 1 Month</p>
-                        <p class="card-text">Rp50.000</p>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-muted">Rp50.000</p>
+                            <p class="text-muted">Rp1.000.000</p>
+                        </div>
                         <div class="progress" style="height: 15px">
                             <div class="progress-bar w-25" role="progressbar" aria-label="Basic example" aria-valuenow="25"
                                 aria-valuemin="0" aria-valuemax="100">
@@ -122,31 +125,73 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Saving Plan</h3>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>Beli Skin Free Fire</h4>
+            <div class="card-body">
+                <h4 class="card-title">Saving Plan
+                </h4>
+
+                <div class="list-wrapper">
+                    <ul class="d-flex flex-column-reverse todo-list">
+                        <li>
+                            <div class="card-check">
+                                <label class="card-check-label">
+                                    <h5>
+                                        <input class="checkbox" type="checkbox">
+                                        Beli Skin Free Fire
+                                        <i class="input-helper"></i>
+                                    </h5>
                                     <p class="card-text">Saving: Rp300.000</p>
-                                    <div class="progress" style="height: 15px">
+                                    <div class="progress" style="height: 10px">
                                         <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                         </div>
                                     </div>
+                                </label>
                             </div>
-                            <div class="card-body">
-                                <h5>Beli Skin Free Fire</h4>
+                            <i class="remove ti-close"></i>
+                        </li>
+                        <li class="completed">
+                            <div class="card-check">
+                                <label class="card-check-label">
+                                    <h5>
+                                        <input class="checkbox" type="checkbox" checked="">
+                                        Beli Skin Mobile Legend
+                                        <i class="input-helper"></i>
+                                    </h5>
                                     <p class="card-text">Saving: Rp300.000</p>
-                                    <div class="progress" style="height: 15px">
+                                    <div class="progress" style="height: 10px">
                                         <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                         </div>
                                     </div>
+                                </label>
                             </div>
-                        </div>
-                    </div>
+                            <i class="remove ti-close"></i>
+                        </li>
+                        <li>
+                            <div class="card-check">
+                                <label class="card-check-label">
+                                    <h5>
+                                        <input class="checkbox" type="checkbox">
+                                        Beli Skin Valorant
+                                        <i class="input-helper"></i>
+                                    </h5>
+                                    <p class="card-text">Saving: Rp300.000</p>
+                                    <div class="progress" style="height: 10px">
+                                        <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <i class="remove ti-close"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="add-items d-flex">
+                    <input type="text" class="form-control todo-list-input" placeholder="Add new task">
+                    <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent">
+                        <i class="fas fa-circle-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -154,21 +199,25 @@
     <div class="theme-setting-wrapper">
         <div id="settings-trigger"><i class="ti-settings"></i></div>
         <div id="theme-settings" class="settings-panel">
-          <i class="settings-close ti-close"></i>
-          <p class="settings-heading">SIDEBAR SKINS</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
-          <p class="settings-heading mt-2">HEADER SKINS</p>
-          <div class="color-tiles mx-0 px-4">
-            <div class="tiles success"></div>
-            <div class="tiles warning"></div>
-            <div class="tiles danger"></div>
-            <div class="tiles info"></div>
-            <div class="tiles dark"></div>
-            <div class="tiles default"></div>
-          </div>
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
+            </div>
+            <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+                <div class="tiles success"></div>
+                <div class="tiles warning"></div>
+                <div class="tiles danger"></div>
+                <div class="tiles info"></div>
+                <div class="tiles dark"></div>
+                <div class="tiles default"></div>
+            </div>
         </div>
-      </div>
+    </div>
 
     <script>
         // Fungsi untuk mengubah angka menjadi format Rupiah

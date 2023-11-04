@@ -35,6 +35,10 @@ Route::post('/register/signup', [AuthController::class, 'signup']);
 
 Route::get('/profile', [UserController::class, 'index']);
 
+Route::get('/editprofile', function () {
+    return view('edit_profile');
+});
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/budgeting', function () {

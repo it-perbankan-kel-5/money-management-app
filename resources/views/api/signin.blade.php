@@ -6,12 +6,12 @@
       <div class="row flex-grow">
         <div class="col-lg-6 d-flex flex-row scale">
           <!-- Add content for the left half here -->
-          <img src="{{ asset("assets/images/logo-login.png") }}" alt="logo">
+          <img src="{{ asset("assets/images/logo-login.svg") }}" alt="logo">
         </div>
         <div class="col-lg-6 d-flex align-items-center justify-content-center">
           <div class="auth-form-transparent text-left p-3">
             <div class="brand-logo">
-              <img src="{{ asset("assets/images/logo.png") }}" alt="logo" class="img-fluid">
+              <img src="{{ asset("assets/images/flexifund.svg") }}" alt="logo" class="img-fluid">
             </div>
             <h3 class="text1">Welcome to FlexiFunds Apps</h3>
             <h5 class="font-weight-light">Happy to see you again!</h5>

@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-       return view('profile');
+        return view('profile');
     }
 
     // public function index()
@@ -41,14 +41,14 @@ class UserController extends Controller
     public function edit_user_profile(Request $request)
     {
         $doPatch = Http::contentType('application/json')
-        ->withToken(session()->get('user_token'))
-        ->patch(API_URL . '/user/edit-profile', [
-            "first_name" => $request->fname,
-            "last_name" => $request->lname,
-            'email' => $request->email,
-            "address" => $request->address,
-            "phone_number" => $request->phone_number,
-        ]);
+            ->withToken(session()->get('user_token'))
+            ->patch(API_URL . '/user/edit-profile', [
+                "first_name" => $request->fname,
+                "last_name" => $request->lname,
+                'email' => $request->email,
+                "address" => $request->address,
+                "phone_number" => $request->phone_number,
+            ]);
 
 
         if ($doPatch->successful()) {
@@ -65,16 +65,16 @@ class UserController extends Controller
             return redirect('profile')->withErrors($doPatch->json());
         }
     }
-    
+
     public function change_user_password(Request $request)
     {
         $doPatch = Http::contentType('application/json')
-        ->withToken(session()->get('user_token'))
-        ->patch(API_URL . '/user/change-password', [
-            "current_password" => $request->password,
-            "new_password" => $request->new_password,
-            'new_password_confirm' => $request->new_password_confirm,
-        ]);
+            ->withToken(session()->get('user_token'))
+            ->patch(API_URL . '/user/change-password', [
+                "current_password" => $request->password,
+                "new_password" => $request->new_password,
+                'new_password_confirm' => $request->new_password_confirm,
+            ]);
 
 
         if ($doPatch->successful()) {
@@ -91,5 +91,5 @@ class UserController extends Controller
         }
     }
 
-    
+
 }
