@@ -27,7 +27,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                     </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" name="fname" placeholder="First Name" required>
+                  <input type="text" class="form-control form-control-lg border-left-0" name="fname" placeholder="First Name" value="{{ old('fname') }}"required>
                   </div>
                 </div>
 
@@ -39,7 +39,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                     </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" name="lname" placeholder="Last Name" required>
+                  <input type="text" class="form-control form-control-lg border-left-0" name="lname" placeholder="Last Name" value="{{ old('lname') }}"required>
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="email" class="form-control form-control-lg border-left-0" name="email" placeholder="Email" required>
+                  <input type="email" class="form-control form-control-lg border-left-0" name="email" placeholder="Email" value="{{ old('email') }}" required>
                 </div>
               </div>
 
@@ -64,7 +64,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control form-control-lg border-left-0" name="address" placeholder="Address" required>
+                  <input type="text" class="form-control form-control-lg border-left-0" name="address" placeholder="Address" value="{{ old('address') }}"required>
                 </div>
               </div>
               
@@ -76,7 +76,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="number" class="form-control form-control-lg border-left-0" name="phone_number" placeholder="Phone Number" required>
+                  <input type="number" class="form-control form-control-lg border-left-0" name="phone_number" placeholder="Phone Number" value="{{ old('phone_number') }}"required>
                 </div>
               </div>              
 

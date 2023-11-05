@@ -7,18 +7,16 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use function Laravel\Prompts\error;
 
-define('API_URL', 'http://127.0.0.1:8000/api');
-
 class AuthController extends Controller
 {
     public function signin_index()
     {
-        return view('api.signin');
+        return view('auth.signin');
     }
 
-    public function register_index()
+    public function signup_index()
     {
-        return view('api.signup');
+        return view('auth.signup');
     }
 
     public function login(Request $request)
@@ -45,41 +43,6 @@ class AuthController extends Controller
         }
     }
 
-
-    // public function logout(Request $request)
-    // {
-    //     $token = session('access_token');
-
-    //     if ($token) {
-    //         $apiUrl = 'http://127.0.0.1:8000/api/logout';
-
-    //         try {
-    //             // Jika menggunakan HTTP Client Laravel
-    //             $response = Http::withHeaders([
-    //                 'Content-Type' => 'application/json',
-    //                 'Authorization' => 'Bearer ' . $token,
-    //             ])->post($apiUrl);
-
-    //             $statusCode = $response->status();
-
-    //             // @dd($response->json());
-
-    //             if ($statusCode === 200) {
-    //                 Auth::logout();
-    //                 session()->forget('access_token');
-
-    //                 return redirect('login');
-    //             } else {
-    //                 return back()->with('error', 'Failed to logout');
-    //             }
-    //         } catch (\Exception $e) {
-    //             return back()->with('error', 'Error: ' . $e->getMessage());
-    //         }
-    //     }
-
-    //     return redirect('login');
-    // }
-
     public function logout()
     {
         $doLogout = Http::withToken(session()->get('user_token'))
@@ -95,14 +58,14 @@ class AuthController extends Controller
     }
 
 
-    public function signup(Request $request)
+    public function register(Request $request)
     {
 
         $doPost = Http::contentType('application/json')
         ->post(API_URL . '/register', [
             "first_name" => $request->fname,
             "last_name" => $request->lname,
-            'email' => $request->email,
+            "email" => $request->email,
             "address" => $request->address,
             "phone_number" => $request->phone_number,
             "password" => $request->password,
@@ -115,10 +78,10 @@ class AuthController extends Controller
                 //                dd($doPost->json('message'));
                 error($doPost->json('message')); // get message
 
-                return redirect('rekening')->withErrors($doPost->json('status'));
+                return redirect('register')->withErrors($doPost->json('status')->withInput());
             }
             //            dd($doPost->body());
-            return redirect('rekening')->withErrors($doPost->json());
+            return redirect('register')->withErrors($doPost->json())->withInput();
         }
     }
     

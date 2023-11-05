@@ -13,39 +13,41 @@
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                     alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                                 <h5>Atsumichi</h5>
-                                <a class="text-primary" href="/editprofile"><i class="far fa-edit"></i></a>
+                                <a href="{{ url('/edit_profile') }}" style="color: inherit;">
+                                    <i class="far fa-edit my-4"></i>
+                                </a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-5">
-                                    <h6 class="align-center">Profile</h6>
-                                    <hr class="mt-0 mb-4">
-                                    <div class="row pt-1">
-                                        <div class="col-6 mb-3">
-                                            <h6>Firts Name</h6>
-                                            <p class="text-muted">atsu</p>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <h6>Last Name</h6>
-                                            <p class="text-muted">michi</p>
-                                        </div>
+                              <h6 class="align-center">Profile</h6>
+                              <hr class="mt-0 mb-4">
+                              <div class="row pt-1">
+                                  <div class="col-6 mb-3">
+                                      <h6>First Name</h6>
+                                      <p class="text-muted">{{ $data['first_name'] }}</p>
+                                  </div>
+                                  <div class="col-6 mb-3">
+                                      <h6>Last Name</h6>
+                                      <p class="text-muted">{{ $data['last_name'] }}</p>
+                                  </div>
+                              </div>
+                              <hr class="mt-1 mb-2">
+                              <div class="row pt-1">
+                                  <div class="col-6 mb-3">
+                                      <h6>Email</h6>
+                                      <p class="text-muted">{{ $data['email'] }}</p>
                                     </div>
-                                    <hr class="mt-1 mb-2">
-                                    <div class="row pt-1">
-                                        <div class="col-6 mb-3">
-                                            <h6>Email</h6>
-                                            <p class="text-muted">atsumichi@gmail.com</p>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <h6>Phone</h6>
-                                            <p class="text-muted">089123456789</p>
-                                        </div>
+                                    <div class="col-6 mb-3">
+                                      <h6>Phone</h6>
+                                      <p class="text-muted">{{ $data['phone_number'] }}</p>
                                     </div>
-                                    <hr class="mt-1 mb-2">
-                                    <div class="row pt-1">
-                                        <div class="col-12 mb-3">
-                                            <h6>Address</h6>
-                                            <p class="text-muted">Arab</p>
-                                        </div>
+                                </div>
+                                <hr class="mt-1 mb-2">
+                                <div class="row pt-1">
+                                  <div class="col-12 mb-3">
+                                      <h6>Address</h6>
+                                      <p class="text-muted">{{ $data['address'] }}</p>
+                                  </div>
                                     </div>
                                 </div>
                             </div>
@@ -55,4 +57,4 @@
             </div>
         </div>
     </section>
-@endsection {{-- Pastikan ini sesuai dengan nama section yang digunakan --}}
+@endsection

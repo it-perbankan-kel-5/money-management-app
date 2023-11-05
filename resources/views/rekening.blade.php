@@ -2,67 +2,85 @@
 @section('title','Rakamin - Rekening')
 @section('head','Rekening')
 @section('content')
-<div class="row"></div>
-<div class="main-panel">
-        <div class="content-wrapper">
-          <!-- User Profile Content -->
-          <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Tambah Rekening</div>
 
-                <div class="card-body">
-                    {{-- @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+        <div class="container py-5">
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Daftar Rekening</div>
+
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nomor Rekening</th>
+                                    <th>Tipe Rekening</th>
+                                    <th>Deskripsi Rekening</th>
+                                    <th>Alias Rekening</th>
+                                    <th>Balance</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $rekening)
+                                <tr>
+                                    <td>{{ $rekening['no_rekening'] }}</td>
+                                    <td>{{ $rekening['rekening_type'] }}</td>
+                                    <td>{{ $rekening['description'] }}</td>
+                                    <td>{{ $rekening['alias'] }}</td>
+                                    <td>{{ $rekening['balance'] }}</td>
+                                    <td>
+                                        <!-- Tambahkan tombol/tindakan untuk mengedit atau menghapus rekening -->
+                                        <a href="{{ url('/rekening/edit/' . $rekening['id']) }}" class="btn btn-primary">Edit</a>
+                                        {{-- <a href="{{ url('/rekening/delete/' . $rekening['id']) }}" class="btn btn-danger">Hapus</a> --}}
+                                        <button class="btn btn-danger delete-button" data-id="{{ $rekening['id'] }}">Hapus</button>
+                                        <form action="{{ url('/rekening/delete/' . $rekening['id']) }}" method="POST"
+                                            class="d-none" id="delete-form-{{ $rekening['id'] }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    @endif
-
-                    @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    @endif --}}
-
-                    <form method="POST" action="{{ url('/rekening/add') }}">
-                        @csrf
-
-                        <div class="form-group">
-                            <label for="rekening_number">Nomor Rekening</label>
-                            <input type="text" name="rekening_number" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="rekening_type">Tipe Rekening</label>
-                            <select name="rekening_type" class="form-control" required>
-                                <!-- Isi pilihan tipe rekening sesuai dengan data yang tersedia -->
-                                <option value="1">Rekening Utama</option>
-                                <option value="2">Rekening Tabungan</option>
-                                <option value="3">Rekening Investasi</option>
-                                <!-- Tambahkan pilihan lainnya sesuai kebutuhan -->
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="rekening_description">Deskripsi Rekening</label>
-                            <input type="text" name="rekening_description" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="rekening_alias">Alias Rekening</label>
-                            <input type="text" name="rekening_alias" class="form-control">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Tambah Rekening</button>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
-        </div>
-</div>
-@endsection {{-- Pastikan ini sesuai dengan nama section yang digunakan --}}
+@endsection
+
+@section('script')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Menambahkan event listener ke tombol "Hapus"
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const rekeningId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Konfirmasi Hapus Rekening',
+                    text: 'Apakah Anda yakin ingin menghapus rekening ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form dengan metode POST
+                        const form = document.getElementById('delete-form-' + rekeningId);
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+@endsection

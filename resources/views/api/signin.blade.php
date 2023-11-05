@@ -13,7 +13,7 @@
             <div class="brand-logo">
               <img src="{{ asset("assets/images/flexifund.svg") }}" alt="logo" class="img-fluid">
             </div>
-            <h3 class="text1">Welcome to FlexiFunds Apps</h3>
+            <h3 class="text1">Welcome to FlexiFund Apps</h3>
             <h5 class="font-weight-light">Happy to see you again!</h5>
 
             <form method="POST" action="{{ url('/login/signin') }}" class="pt-3">

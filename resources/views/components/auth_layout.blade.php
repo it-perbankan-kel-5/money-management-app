@@ -10,10 +10,6 @@
 
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.svg') }}" />
 
-    <!-- inject:SweetAlert -->
-    {{-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.8/dist/sweetalert2.min.css" rel="stylesheet"> --}}
-    <!-- endinject -->
-
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -21,7 +17,6 @@
     <!-- endinject -->
 
     <!-- Plugin css for this page -->
-    {{-- <link rel="stylesheet" href="{{ asset("assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css") }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select.dataTables.min.css') }}">
     <!-- End plugin css for this page -->
@@ -37,12 +32,10 @@
 
     <!-- inject:SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script src="{{ asset("assets/js/alerts.js") }}"></script> --}}
     <!-- End plugin js for SweetAlert -->
 
     <!-- plugins:js -->
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }} "></script>
-    {{-- <script src="{{ asset("assets/vendors/sweetalert/sweetalert.min.js") }}"></script> --}}
     <script src="{{ asset('assets/vendors/jquery.avgrund/jquery.avgrund.min.js') }}"></script>
     <!-- endinject -->
 
@@ -78,6 +71,18 @@
     @endif
 
     @if ($errors->any())
+        <script>
+            @foreach ($errors->all() as $item)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ $item }}'
+                });
+            @endforeach
+        </script>
+    @endif
+
+    @if (session('error'))
         <script>
             @foreach ($errors->all() as $item)
                 Swal.fire({

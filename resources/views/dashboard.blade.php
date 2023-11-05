@@ -6,7 +6,7 @@
         <div class="col-md-12 grid-margin">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight">Welcome back, <strong>Atsumichi</strong></h3>
+                    <h3 class="font-weight">Welcome back, <strong>{{ $data['first_name'] }}</strong></h3>
                     @if (session()->has('user_token'))
                         <p>Token yang tersimpan dalam session: {{ session('user_token') }}</p>
                     @else
