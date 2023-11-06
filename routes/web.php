@@ -57,6 +57,11 @@ Route::get('/addbudgeting', function () {
 // Mail
 Route::get('/emails/budgeting_mail', [BudgetingMailController::class, 'sendMail']);
 
+// Saving Plan
+Route::get('/savingplan', function () {
+    return view('savingplan');
+});
+
 
 
 

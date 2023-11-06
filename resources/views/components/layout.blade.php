@@ -320,6 +320,12 @@
               <span class="menu-title">Rekening</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="savingplan">
+              <i class="fa-solid fa-piggy-bank menu-icon"></i>
+              <span class="menu-title">Saving Plan</span>
+            </a>
+          </li>
         </ul>
       </nav>
       
