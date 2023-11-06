@@ -32,7 +32,7 @@
                                     <td>{{ $rekening['balance'] }}</td>
                                     <td>
                                         <!-- Tambahkan tombol/tindakan untuk mengedit atau menghapus rekening -->
-                                        <a href="{{ url('/rekening/edit/' . $rekening['id']) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ url('/edit_rekening/' . $rekening['id']) }}" class="btn btn-primary">Edit</a>
                                         {{-- <a href="{{ url('/rekening/delete/' . $rekening['id']) }}" class="btn btn-danger">Hapus</a> --}}
                                         <button class="btn btn-danger delete-button" data-id="{{ $rekening['id'] }}">Hapus</button>
                                         <form action="{{ url('/rekening/delete/' . $rekening['id']) }}" method="POST"

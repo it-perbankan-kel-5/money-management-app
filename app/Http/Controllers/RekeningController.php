@@ -41,7 +41,6 @@ class RekeningController extends Controller
     // Add User Rekening
     public function add_rekening(Request $request)
     {
-        
         $doPost = Http::contentType('application/json')
         ->withToken(session()->get('user_token'))
         ->post(API_URL . '/user/rekening', [
@@ -66,13 +65,40 @@ class RekeningController extends Controller
         }
     }
 
-    // Edit User Rekening
+    public function edit_rekening()
+    {
+        $doRetrive = Http::accept('application/json')
+        ->withToken(session()->get('user_token'))
+        ->get(API_URL . '/user/rekening');
 
-    public function edit_rekening(Request $request)
+        if ($doRetrive->successful()) {
+            $data = $doRetrive->json('data');
+
+            // dd($doRetrive->json('data'));
+
+            return view(
+                'edit_rekening',
+                compact('data')
+            );
+        } else {
+            if (array_key_exists('message', $doRetrive->json())) {
+                //                dd($doDelete->json('message'));
+                error($doRetrive->json('message')); // get message
+
+                // return error with status
+                return redirect('dashboard')->withErrors($doRetrive->json('status'));
+            }
+
+            return redirect('dashboard')->withErrors($doRetrive->json());
+        }
+    }
+
+    // Edit User Rekening
+    public function update_rekening(Request $request, $id)
     {
         $doPatch = Http::contentType('application/json')
         ->withToken(session()->get('user_token'))
-        ->patch(API_URL . '/user/rekening/{rekening_id}', [
+        ->patch(API_URL . '/user/rekening/' . $id, [
             "rekening_description" => $request->rekening_description,
             "rekening_alias" => $request->rekening_alias,
         ]);

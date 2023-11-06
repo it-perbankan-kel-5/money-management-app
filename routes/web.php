@@ -43,6 +43,8 @@ Route::patch('/edit_profile/update', [UserController::class, 'update_user_profil
 // Rekening
 Route::get('/rekening', [RekeningController::class, 'index']);
 Route::POST('/rekening/add', [RekeningController::class, 'add_rekening']);
+Route::get('/edit_rekening', [RekeningController::class, 'edit_rekening']);
+Route::patch('/edit_rekening/{id}', [RekeningController::class, 'update_rekening']);
 Route::DELETE('/rekening/delete/{id}', [RekeningController::class, 'delete_rekeningByid']);
 
 

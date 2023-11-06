@@ -10,9 +10,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // $token = session('user_token');
+
+        // if (!$token) {
+        //     return redirect('login')->withErrors('Token not found.');
+        // }
+
         $doRetrive = Http::accept('application/json')
         ->withToken(session()->get('user_token'))
         ->get(API_URL . '/user');
+        
 
         if ($doRetrive->successful()) {
             // dd($doRetrive->json('data'));
