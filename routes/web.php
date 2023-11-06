@@ -39,12 +39,15 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/profile', [UserController::class, 'index']);
 Route::get('/edit_profile', [UserController::class, 'edit_user_profile']);
 Route::patch('/edit_profile/update', [UserController::class, 'update_user_profile']);
+Route::patch('/profile/change_password', [UserController::class, 'change_user_password']);
+
 
 // Rekening
-Route::get('/rekening', [RekeningController::class, 'index']);
+Route::GET('/rekening', [RekeningController::class, 'index']);
+Route::GET('/rekening/create', [RekeningController::class, 'create_rekening']);
 Route::POST('/rekening/add', [RekeningController::class, 'add_rekening']);
-Route::get('/edit_rekening', [RekeningController::class, 'edit_rekening']);
-Route::patch('/edit_rekening/{id}', [RekeningController::class, 'update_rekening']);
+Route::GET('/edit_rekening/{id}', [RekeningController::class, 'edit_rekening']);
+Route::PATCH('/update_rekening/{id}', [RekeningController::class, 'update_rekening']);
 Route::DELETE('/rekening/delete/{id}', [RekeningController::class, 'delete_rekeningByid']);
 
 

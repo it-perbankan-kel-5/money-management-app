@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use function Laravel\Prompts\error;
-
-// define('API_URL', 'http://127.0.0.1:8000/api');
 
 class RekeningController extends Controller
 {
@@ -15,15 +12,15 @@ class RekeningController extends Controller
     public function index()
     {
         $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user/rekening');
+            ->withToken(session()->get('user_token'))
+            ->get(API_URL . '/user/rekening');
 
         if ($doRetrive->successful()) {
             $data = $doRetrive->json('data');
-            
-            // dd($doRetrive->json('data'));
 
-            return view('rekening',compact('data')
+            return view(
+                'rekening',
+                compact('data')
             );
         } else {
             if (array_key_exists('message', $doRetrive->json())) {
@@ -38,17 +35,23 @@ class RekeningController extends Controller
         }
     }
 
-    // Add User Rekening
+    // Create User Rekening
+    public function create_rekening()
+    {
+        return view('add_rekening');
+    }
+
+    // Add  User Rekening
     public function add_rekening(Request $request)
     {
         $doPost = Http::contentType('application/json')
-        ->withToken(session()->get('user_token'))
-        ->post(API_URL . '/user/rekening', [
-            "rekening_number"       => $request->rekening_number,
-            "rekening_description"  => $request->rekening_description,
-            "rekening_alias"        => $request->rekening_alias,
-            "rekening_type"         => $request->rekening_type,
-        ]);
+            ->withToken(session()->get('user_token'))
+            ->post(API_URL . '/user/rekening', [
+                "rekening_number"       => $request->rekening_number,
+                "rekening_description"  => $request->rekening_description,
+                "rekening_alias"        => $request->rekening_alias,
+                "rekening_type"         => $request->rekening_type,
+            ]);
 
         if ($doPost->successful()) {
             return redirect('rekening')->with('success', 'Tambah Rekening berhasil');
@@ -65,44 +68,49 @@ class RekeningController extends Controller
         }
     }
 
-    public function edit_rekening()
+    // Edit User Rekening
+    public function edit_rekening($id)
     {
         $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user/rekening');
+            ->withToken(session()->get('user_token'))
+            ->get(API_URL . '/user/rekening/' . $id);
 
         if ($doRetrive->successful()) {
             $data = $doRetrive->json('data');
 
             // dd($doRetrive->json('data'));
+            // dd($doRetrive->body());
+            dd($data);
 
-            return view(
-                'edit_rekening',
-                compact('data')
-            );
+            return view('edit_rekening',compact('data'));
+
+            dd($data);
         } else {
             if (array_key_exists('message', $doRetrive->json())) {
                 //                dd($doDelete->json('message'));
                 error($doRetrive->json('message')); // get message
 
                 // return error with status
-                return redirect('dashboard')->withErrors($doRetrive->json('status'));
+                return redirect('rekening')->withErrors($doRetrive->json('status'));
             }
 
-            return redirect('dashboard')->withErrors($doRetrive->json());
+            return redirect('rekening')->withErrors($doRetrive->json());
         }
     }
 
-    // Edit User Rekening
+    // Update User Rekening
     public function update_rekening(Request $request, $id)
     {
-        $doPatch = Http::contentType('application/json')
+        $doRetrive = Http::accept('application/json')
         ->withToken(session()->get('user_token'))
-        ->patch(API_URL . '/user/rekening/' . $id, [
-            "rekening_description" => $request->rekening_description,
-            "rekening_alias" => $request->rekening_alias,
-        ]);
-
+        ->get(API_URL . '/user/rekening/' . $id);
+        
+        $doPatch = Http::contentType('application/json')
+            ->withToken(session()->get('user_token'))
+            ->patch(API_URL . '/user/rekening/' . $id, [
+                "rekening_description" => $request->rekening_description,
+                "rekening_alias" => $request->rekening_alias,
+            ]);
 
         if ($doPatch->successful()) {
             return view('rekening')->with('success', 'Edit Rekening berhasil');
@@ -119,60 +127,7 @@ class RekeningController extends Controller
         }
     }
 
-    // Retrieve User Rekening By id
-
-    public function retrieve_rekeningByid()
-    {
-        $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user/rekening/{rekening_id}');
-
-        if ($doRetrive->successful()) {
-            // dd($doRetrive->json());
-
-            return redirect('rekening')->with('data', $doRetrive->json());
-
-        } else {
-            if (array_key_exists('message', $doRetrive->json())) {
-                //                dd($doDelete->json('message'));
-                error($doRetrive->json('message')); // get message
-
-                // return error with status
-                return redirect('rekening')->withErrors($doRetrive->json('status'));
-            }
-
-            return redirect('rekening')->withErrors($doRetrive->json());
-        }
-    }
-
-    // Retrieve User Rekening By type
-
-    public function retrieve_rekeningBytype()
-    {
-        $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user/rekening/type/{type_id}');
-
-        if ($doRetrive->successful()) {
-            // dd($doRetrive->json());
-
-            return redirect('rekening')->with('data', $doRetrive->json());
-
-        } else {
-            if (array_key_exists('message', $doRetrive->json())) {
-                //                dd($doDelete->json('message'));
-                error($doRetrive->json('message')); // get message
-
-                // return error with status
-                return redirect('rekening')->withErrors($doRetrive->json('status'));
-            }
-
-            return redirect('rekening')->withErrors($doRetrive->json());
-        }
-    }
-
     // Delete User Rekening
-
     public function delete_rekeningByid($id)
     {
         $doDelete = Http::contentType('application/json')
@@ -193,4 +148,53 @@ class RekeningController extends Controller
             return redirect('request-error')->withErrors($doDelete->json());
         }
     }
+    // // Retrieve User Rekening By id
+    // public function retrieve_rekeningByid()
+    // {
+    //     $doRetrive = Http::accept('application/json')
+    //         ->withToken(session()->get('user_token'))
+    //         ->get(API_URL . '/user/rekening/{rekening_id}');
+
+    //     if ($doRetrive->successful()) {
+    //         // dd($doRetrive->json());
+
+    //         return redirect('rekening')->with('data', $doRetrive->json());
+    //     } else {
+    //         if (array_key_exists('message', $doRetrive->json())) {
+    //             //                dd($doDelete->json('message'));
+    //             error($doRetrive->json('message')); // get message
+
+    //             // return error with status
+    //             return redirect('rekening')->withErrors($doRetrive->json('status'));
+    //         }
+
+    //         return redirect('rekening')->withErrors($doRetrive->json());
+    //     }
+    // }
+
+    // // Retrieve User Rekening By type
+    // public function retrieve_rekeningBytype()
+    // {
+    //     $doRetrive = Http::accept('application/json')
+    //         ->withToken(session()->get('user_token'))
+    //         ->get(API_URL . '/user/rekening/type/{type_id}');
+
+    //     if ($doRetrive->successful()) {
+    //         // dd($doRetrive->json());
+
+    //         return redirect('rekening')->with('data', $doRetrive->json());
+    //     } else {
+    //         if (array_key_exists('message', $doRetrive->json())) {
+    //             //                dd($doDelete->json('message'));
+    //             error($doRetrive->json('message')); // get message
+
+    //             // return error with status
+    //             return redirect('rekening')->withErrors($doRetrive->json('status'));
+    //         }
+
+    //         return redirect('rekening')->withErrors($doRetrive->json());
+    //     }
+    // }
+
+
 }

@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
+            ->withToken(session()->get('user_token'))
             ->get(API_URL . '/user');
 
         if ($doRetrive->successful()) {
@@ -36,8 +36,8 @@ class UserController extends Controller
     public function edit_user_profile(Request $request)
     {
         $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user');
+            ->withToken(session()->get('user_token'))
+            ->get(API_URL . '/user');
 
         if ($doRetrive->successful()) {
             // dd($doRetrive->json('data'));
@@ -60,8 +60,8 @@ class UserController extends Controller
     public function update_user_profile(Request $request)
     {
         $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user');
+            ->withToken(session()->get('user_token'))
+            ->get(API_URL . '/user');
 
         if ($doRetrive->successful()) {
             $currentUserData = $doRetrive->json('data');
@@ -80,8 +80,8 @@ class UserController extends Controller
 
             if (!empty($dataToUpdate)) {
                 $doPatch = Http::contentType('application/json')
-                ->withToken(session()->get('user_token'))
-                ->patch(API_URL . '/user/edit-profile', $dataToUpdate);
+                    ->withToken(session()->get('user_token'))
+                    ->patch(API_URL . '/user/edit-profile', $dataToUpdate);
 
                 if ($doPatch->successful()) {
                     // Proses berhasil
@@ -103,19 +103,18 @@ class UserController extends Controller
         }
     }
 
-
     public function change_user_password(Request $request)
     {
         $doPatch = Http::contentType('application/json')
             ->withToken(session()->get('user_token'))
             ->patch(API_URL . '/user/change-password', [
-                "current_password" => $request->password,
+                "current_password" => $request->current_password,
                 "new_password" => $request->new_password,
-                'new_password_confirm' => $request->new_password_confirm,
+                "new_password_confirm" => $request->new_password_confirm,
             ]);
 
         if ($doPatch->successful()) {
-            return redirect('profile')->with('success', 'Edit Rekening berhasil');
+            return redirect('profile')->with('success', 'Edit Password berhasil');
         } else {
             if (array_key_exists('message', $doPatch->json())) {
                 //                dd($doPatch->json('message'));
@@ -127,5 +126,4 @@ class UserController extends Controller
             return redirect('profile')->withErrors($doPatch->json());
         }
     }
-
 }
