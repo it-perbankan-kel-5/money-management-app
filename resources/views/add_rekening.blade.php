@@ -9,11 +9,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Tambah Rekening</div>
-
+                        <div class="card-header bg-inverse-primary"><strong>Tambah Rekening</strong></div>
                         <div class="card-body">
 
                             <form method="POST" action="{{ url('/rekening/add') }}">
+
                                 @csrf
 
                                 <div class="form-group">
@@ -42,7 +42,10 @@
                                     <input type="text" name="rekening_alias" class="form-control">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Tambah Rekening</button>
+                                <div class="form-group d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary mr-2" onclick="history.back()">Close</button>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
                             </form>
                         </div>
                     </div>

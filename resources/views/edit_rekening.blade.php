@@ -1,6 +1,6 @@
 @extends('components/layout') {{-- Pastikan ini sesuai dengan nama layout Anda --}}
 @section('title', 'Rakamin - Rekening')
-@section('head', 'Rekening')
+@section('head', 'Edit Rekening')
 @section('content')
 
     <div class="container py-5">
@@ -10,7 +10,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Tambah Rekening</div>
+                        <div class="card-header bg-inverse-primary"><strong>Edit Rekening</strong></div>
 
                         <div class="card-body">
 
