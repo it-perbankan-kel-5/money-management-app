@@ -321,34 +321,44 @@
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
+
+                    {{-- Dashboard --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/budgeting">
-                            <i class="mdi mdi-wallet menu-icon"></i>
-                            <span class="menu-title">Budgeting</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">
-                            <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">User Profile</span>
-                        </a>
-                    </li>
+
+                    {{-- Rekening --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/rekening">
                             <i class="fa-solid fa-money-check-dollar menu-icon"></i>
                             <span class="menu-title">Rekening</span>
                         </a>
                     </li>
+
+                    {{-- Budgeting --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/savingplan">
+                        <a class="nav-link" href="/budgeting">
+                            <i class="mdi mdi-wallet menu-icon"></i>
+                            <span class="menu-title">Budgeting</span>
+                        </a>
+                    </li>
+                    
+                    {{-- Saving Plan --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/saving-plan">
                             <i class="fa-solid fa-piggy-bank menu-icon"></i>
                             <span class="menu-title">Saving Plan</span>
+                        </a>
+                    </li>
+
+                    {{-- Profile --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">User Profile</span>
                         </a>
                     </li>
                 </ul>

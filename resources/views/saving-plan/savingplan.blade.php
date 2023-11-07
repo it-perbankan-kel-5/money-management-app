@@ -1,8 +1,7 @@
-@extends('components/layout') {{-- Pastikan ini sesuai dengan nama layout Anda --}}
+@extends('components/layout')
 @section('title', 'Rakamin - Saving Plan')
 @section('head', 'Saving Plan')
 @section('content')
-
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -10,7 +9,7 @@
                     <div class="card-header">
                         Saving Plan
                         <button class="add btn btn-icon text-primary bg-transparent">
-                            <a href="/addsavingplan"><i class="fas fa-circle-plus"></i></a>
+                            <a href="/saving-plan/create"><i class="fas fa-circle-plus"></i></a>
                         </button>
                     </div>
                     <div class="card-body">
@@ -26,8 +25,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($data as $savingplan) --}}
-                                    {{-- <tr>
+                                @foreach ($data as $savingplan)
+                                    <tr>
                                         <td>{{ $savingplan['name'] }}</td>
                                         <td>{{ $savingplan['description'] }}</td>
                                         <td>{{ $savingplan['current_amount'] }}</td>
@@ -35,12 +34,16 @@
                                         <td>{{ $savingplan['target_date'] }}</td>
                                         <td>
                                             <!-- Tambahkan tombol/tindakan untuk mengedit atau menghapus savingplan -->
-                                            <a href="{{ url('/edit_savingplan/' . $savingplan['id']) }}" class="btn btn-warning btn-sm">
+                                            <a href="{{ url('/edit_savingplan/' . $savingplan['id']) }}"
+                                                class="btn btn-warning btn-sm">
                                                 <i class="text-light far fa-edit"></i>
                                             </a>
-                                            <a href="{{ url('/savingplan/delete/' . $savingplan['id']) }}" class="btn btn-danger btn-sm">
+
+                                            <a href="{{ url('/savingplan/delete/' . $savingplan['id']) }}"
+                                                class="btn btn-danger btn-sm">
                                                 <i class="text-light far fa-trash-alt"></i>
                                             </a>
+
                                             <button class="btn btn-danger delete-button"
                                                 data-id="{{ $savingplan['id'] }}">Hapus</button>
                                             <form action="{{ url('/savingplan/delete/' . $savingplan['id']) }}"
@@ -49,8 +52,8 @@
                                                 @method('DELETE')
                                             </form>
                                         </td>
-                                    </tr> --}}
-                                {{-- @endforeach --}}
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -60,7 +63,7 @@
     </div>
 @endsection
 
-{{-- @section('script')
+@section('script')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -92,4 +95,4 @@
         });
     </script>
 
-@endsection --}}
+@endsection

@@ -22,6 +22,7 @@ class RekeningController extends Controller
                 'rekening',
                 compact('data')
             );
+            
         } else {
             if (array_key_exists('message', $doRetrive->json())) {
                 //                dd($doDelete->json('message'));

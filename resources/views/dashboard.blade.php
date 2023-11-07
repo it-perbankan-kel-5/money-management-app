@@ -110,7 +110,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     {{--TODO - CEK LAGI BUAT FE--}}
-                    <div class="card-body">
+                    {{-- <div class="card-body">
                         <h3 class="card-title">Budget Limit</h3>
                         <p class="card-text">Limit on 1 Month</p>
                         <div class="d-flex justify-content-between">
@@ -122,7 +122,7 @@
                             <div class="progress-bar" role="progressbar" style="width: {{round($rate)}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{round($rate)}}">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="card-body">
@@ -132,7 +132,7 @@
                 <div class="list-wrapper">
                     <ul class="d-flex flex-column-reverse todo-list">
                         {{--TODO - CEK LAGI BUAT FE--}}
-                        @foreach($saving_plan as $sp)
+                        {{-- @foreach($saving_plan as $sp)
                             <li>
                                 <div class="card-check">
                                     <label class="card-check-label">
@@ -150,7 +150,7 @@
                                 </div>
                                 <i class="remove ti-close"></i>
                             </li>
-                        @endforeach
+                        @endforeach --}}
                     </ul>
                 </div>
                 <div class="add-items d-flex">

@@ -12,7 +12,7 @@
                         <div class="card-header bg-inverse-primary"><strong>Tambah Saving Plan</strong></div>
                         <div class="card-body">
 
-                            <form method="POST" action="{{ url('/savingplan/add') }}"> <!--belum di setting-->
+                            <form method="POST" action="{{ url('/saving-plan/store') }}">
                                 @csrf
 
                                 <div class="form-group">
