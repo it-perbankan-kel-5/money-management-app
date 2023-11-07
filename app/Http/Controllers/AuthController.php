@@ -56,10 +56,8 @@ class AuthController extends Controller
         }
     }
 
-
     public function register(Request $request)
     {
-
         $doPost = Http::contentType('application/json')
         ->post(API_URL . '/register', [
             "first_name" => $request->fname,
@@ -71,17 +69,16 @@ class AuthController extends Controller
         ]);
 
         if ($doPost->successful()) {
-            return redirect('login')->with('success', 'Tambah Rekening berhasil');
+            return redirect('login')->with('success', $doPost->json('status'));
         } else {
             if (array_key_exists('message', $doPost->json())) {
                 //                dd($doPost->json('message'));
                 error($doPost->json('message')); // get message
 
-                return redirect('register')->withErrors($doPost->json('status')->withInput());
+                return redirect('register')->withErrors($doPost->json('status'))->withInput();
             }
             //            dd($doPost->body());
             return redirect('register')->withErrors($doPost->json())->withInput();
         }
     }
-    
 }

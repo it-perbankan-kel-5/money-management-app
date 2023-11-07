@@ -28,7 +28,6 @@ class SavingPlanController extends Controller
                 'saving-plan.savingplan',
                 compact('data')
             );
-            
         } else {
             if (array_key_exists('message', $doRetrive->json())) {
                 //                dd($doDelete->json('message'));
@@ -45,7 +44,32 @@ class SavingPlanController extends Controller
     // Create User saving_plan
     public function create_saving_plan()
     {
-        return view('saving-plan.create_savingplan');
+        // $doRetrive = Http::accept('application/json')
+        //     ->withToken(session()->get('user_token'))
+        //     ->get(API_URL . '/user/rekening/type/2');
+
+        $doRetrive = Http::accept('application/json')
+            ->withToken(session()->get('user_token'))
+            ->get(API_URL . '/user/rekening');
+
+        if ($doRetrive->successful()) {
+            $data = $doRetrive->json('data');
+
+            return view(
+                'saving-plan.create_savingplan',
+                compact('data')
+            );
+        } else {
+            if (array_key_exists('message', $doRetrive->json())) {
+                //                dd($doDelete->json('message'));
+                error($doRetrive->json('message')); // get message
+
+                // return error with status
+                return redirect('saving-plan')->withErrors($doRetrive->json('status'));
+            }
+
+            return redirect('saving-plan')->withErrors($doRetrive->json());
+        }
     }
 
     // Add  User saving_plan
@@ -54,12 +78,13 @@ class SavingPlanController extends Controller
         $doPost = Http::contentType('application/json')
             ->withToken(session()->get('user_token'))
             ->post(API_URL . '/user/saving-plan', [
+                "rekening_id"           => $request->rekening_id,
                 "saving_name"           => $request->saving_name,
                 "saving_description"    => $request->saving_description,
                 "saving_target_amount"  => $request->saving_target_amount,
                 "saving_target_date"    => $request->saving_target_date,
             ]);
-
+        dd($doPost);
         if ($doPost->successful()) {
             return redirect('saving-plan')->with('success', 'Tambah Saving Plan berhasil');
         } else {
@@ -67,11 +92,11 @@ class SavingPlanController extends Controller
                 //                dd($doPost->json('message'));
                 error($doPost->json('message')); // get message
 
-                return redirect('saving-plan')->withErrors($doPost->json('status'));
+                return redirect('saving-plan/create')->withErrors($doPost->json('status'))->withInput();
             }
 
             //            dd($doPost->body());
-            return redirect('saving-plan')->withErrors($doPost->json());
+            return redirect('saving-plan/create')->withErrors($doPost->json())->withInput();
         }
     }
 
