@@ -80,7 +80,7 @@ class RekeningController extends Controller
 
             // dd($doRetrive->json('data'));
             // dd($doRetrive->body());
-            dd($data);
+            // dd($data);
 
             return view('edit_rekening',compact('data'));
 
@@ -101,10 +101,6 @@ class RekeningController extends Controller
     // Update User Rekening
     public function update_rekening(Request $request, $id)
     {
-        $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user/rekening/' . $id);
-        
         $doPatch = Http::contentType('application/json')
             ->withToken(session()->get('user_token'))
             ->patch(API_URL . '/user/rekening/' . $id, [
@@ -113,7 +109,7 @@ class RekeningController extends Controller
             ]);
 
         if ($doPatch->successful()) {
-            return view('rekening')->with('success', 'Edit Rekening berhasil');
+            return redirect('rekening')->with('success', 'Edit Rekening berhasil');
         } else {
             if (array_key_exists('message', $doPatch->json())) {
                 //                dd($doPatch->json('message'));
