@@ -6,7 +6,6 @@
         <div class="col-md-12 grid-margin">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight">Welcome back, <strong>{{ $data['first_name'] }}</strong></h3>
                     @if (session()->has('user_token'))
                         <p>Token yang tersimpan dalam session: {{ session('user_token') }}</p>
                     @else
@@ -110,16 +109,17 @@
         <div class="col-md-4 grid-margin">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
+                    {{--TODO - CEK LAGI BUAT FE--}}
                     <div class="card-body">
                         <h3 class="card-title">Budget Limit</h3>
                         <p class="card-text">Limit on 1 Month</p>
                         <div class="d-flex justify-content-between">
-                            <p class="text-muted">Rp50.000</p>
-                            <p class="text-muted">Rp1.000.000</p>
+                            <p class="text-muted" id="blCurrent"></p>
+                            <p class="text-muted" id="blTarget"></p>
                         </div>
+                        @php($rate = ($budget_analytic['total_current_amount'] / $budget_analytic['total_target_amount']) * 100)
                         <div class="progress" style="height: 15px">
-                            <div class="progress-bar w-25" role="progressbar" aria-label="Basic example" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" role="progressbar" style="width: {{round($rate)}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{round($rate)}}">
                             </div>
                         </div>
                     </div>
@@ -131,60 +131,26 @@
 
                 <div class="list-wrapper">
                     <ul class="d-flex flex-column-reverse todo-list">
-                        <li>
-                            <div class="card-check">
-                                <label class="card-check-label">
-                                    <h5>
-                                        <input class="checkbox" type="checkbox">
-                                        Beli Skin Free Fire
-                                        <i class="input-helper"></i>
-                                    </h5>
-                                    <p class="card-text">Saving: Rp300.000</p>
-                                    <div class="progress" style="height: 10px">
-                                        <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                        {{--TODO - CEK LAGI BUAT FE--}}
+                        @foreach($saving_plan as $sp)
+                            <li>
+                                <div class="card-check">
+                                    <label class="card-check-label">
+                                        <h5>
+                                            <input class="checkbox" type="checkbox">
+                                            {{$sp['name']}}
+                                            <i class="input-helper"></i>
+                                        </h5>
+                                        <p class="card-text">Current: Rp {{$sp['current_amount']}}</p>
+                                        @php($rateSp = ($sp['current_amount'] / $sp['target_amount']) * 100)
+                                        <div class="progress" style="height: 10px">
+                                            <div class="progress-bar" role="progressbar" style="width: {{round($rateSp)}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{round($rateSp)}}"/>
                                         </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <i class="remove ti-close"></i>
-                        </li>
-                        <li class="completed">
-                            <div class="card-check">
-                                <label class="card-check-label">
-                                    <h5>
-                                        <input class="checkbox" type="checkbox" checked="">
-                                        Beli Skin Mobile Legend
-                                        <i class="input-helper"></i>
-                                    </h5>
-                                    <p class="card-text">Saving: Rp300.000</p>
-                                    <div class="progress" style="height: 10px">
-                                        <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <i class="remove ti-close"></i>
-                        </li>
-                        <li>
-                            <div class="card-check">
-                                <label class="card-check-label">
-                                    <h5>
-                                        <input class="checkbox" type="checkbox">
-                                        Beli Skin Valorant
-                                        <i class="input-helper"></i>
-                                    </h5>
-                                    <p class="card-text">Saving: Rp300.000</p>
-                                    <div class="progress" style="height: 10px">
-                                        <div class="progress-bar w-25" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <i class="remove ti-close"></i>
-                        </li>
+                                    </label>
+                                </div>
+                                <i class="remove ti-close"></i>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="add-items d-flex">
@@ -229,13 +195,27 @@
         }
 
         // Angka yang ingin diubah menjadi format Rupiah
-        var balance = 100000;
-        var income = 150000;
-        var outcome = 75000;
+        const balance = {{$income}};
+        const income = {{$expense}};
+        @foreach($rekening as $rek)
+            const outcome = {{$rek['balance']}};
+        @endforeach
+        const blCurrent = {{$budget_analytic['total_current_amount']}};
+        const blTarget = {{$budget_analytic['total_target_amount']}};
 
         // Mengubah angka menjadi format Rupiah dan menaruhnya pada elemen paragraf
         document.getElementById('balance').innerHTML = formatRupiah(balance);
         document.getElementById('income').innerHTML = formatRupiah(income);
         document.getElementById('outcome').innerHTML = formatRupiah(outcome);
+        document.getElementById('blCurrent').innerHTML = formatRupiah(blCurrent);
+        document.getElementById('blTarget').innerHTML = formatRupiah(blTarget);
     </script>
+
+    <!-- TODO - Proses data analytic -->
+    <br>
+    {{json_encode($analytic_income, JSON_PRETTY_PRINT)}}
+    <br>
+    {{json_encode($analytic_expense, JSON_PRETTY_PRINT)}}
+
+
 @endsection

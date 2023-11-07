@@ -104,7 +104,7 @@ class RekeningController extends Controller
         $doRetrive = Http::accept('application/json')
         ->withToken(session()->get('user_token'))
         ->get(API_URL . '/user/rekening/' . $id);
-        
+
         $doPatch = Http::contentType('application/json')
             ->withToken(session()->get('user_token'))
             ->patch(API_URL . '/user/rekening/' . $id, [

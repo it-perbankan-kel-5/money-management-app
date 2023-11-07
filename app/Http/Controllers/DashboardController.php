@@ -2,53 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Http;
-use function Laravel\Prompts\error;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // $token = session('user_token');
+        $token = session()->get('user_token');
 
-        // if (!$token) {
-        //     return redirect('login')->withErrors('Token not found.');
-        // }
+        $data = Http::pool(function (Pool $pool) use ($token) {
+            $pool->as('rekening_utama')
+                ->withToken($token)
+                ->get(API_URL . '/user/rekening/type/1');
 
-        $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user');
-        
+            $pool->as('budget_analytic')
+                ->withToken($token)
+                ->get(API_URL . '/user/budget-analytic/');
 
-        if ($doRetrive->successful()) {
-            // dd($doRetrive->json('data'));
-            $data = $doRetrive->json('data');
+            $pool->as('saving_plan')
+                ->withToken($token)
+                ->get(API_URL . '/user/saving-plan');
 
-            return view('dashboard', compact('data'));
-        } else {
-            if (array_key_exists('message', $doRetrive->json())) {
-                //                dd($doDelete->json('message'));
-                error($doRetrive->json('message')); // get message
+            $pool->as('income')
+                ->withToken($token)
+                ->get(API_URL . '/user/income/total/monthly');
 
-                // return error with status
-                return redirect('login')->withErrors($doRetrive->json('status'));
-            }
+            $pool->as('expense')
+                ->withToken($token)
+                ->get(API_URL . '/user/expense/total/monthly');
 
-            return redirect('login')->withErrors($doRetrive->json());
-        }
+            $pool->as('analytic_income')
+                ->withToken($token)
+                ->get(API_URL . '/user/analytic/income/monthly');
+
+            $pool->as('analytic_expense')
+                ->withToken($token)
+                ->get(API_URL . '/user/analytic/expense/monthly');
+
+//            $pool->as('history')
+//                ->withToken($token)
+//                ->get('');
+        });
+
+        return view('dashboard')
+            ->with('rekening', $data['rekening_utama']->json('data'))
+            ->with('budget_analytic', $data['budget_analytic']->json(['data']))
+            ->with('saving_plan', $data['saving_plan']->json('data'))
+            ->with('income', $data['income']->json()[0]['total'])
+            ->with('expense', $data['expense']->json()[0]['total'])
+            ->with('analytic_income', $data['analytic_income']->json('data'))
+            ->with('analytic_expense', $data['analytic_expense']->json('data'));
+
     }
-
-    // public function index()
-    // {
-    //     // Mengambil token dari session
-    //     $token = session('user_token');
-
-    //     if (!$token) {
-    //         return redirect('login')->withErrors('Token not found.');
-    //     }
-
-    //     // Kemudian, tampilkan tampilan dashboard
-    //     return view('dashboard', ['token' => $token]);=
-    // }
 }
