@@ -72,4 +72,10 @@
   </div>
   <!-- container-scroller ends -->
 </div>
+
+<!--
+    TODO - tambah notif buat user kalo dia mesti login dulu.
+          cek Middleware/EnsureTokenIsExists.php buat detailnya errornya
+-->
+
 @endsection
