@@ -83,5 +83,8 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
     Route::get('/savingplan', function () {
         return view('savingplan');
     });
+    Route::get('/addsavingplan', function () {
+        return view('add_savingplan');
+    });
 
 });
