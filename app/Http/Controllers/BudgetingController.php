@@ -59,7 +59,7 @@ class BudgetingController extends Controller
     {
         $doRetrive = Http::accept('application/json')
             ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user/budgeting/' . $id);
+            ->get(API_URL . '/user/budget-limit/' . $id);
         // dd($doRetrive);
         // dd($doRetrive->body());
         if ($doRetrive->successful()) {
@@ -75,7 +75,7 @@ class BudgetingController extends Controller
                 error($doRetrive->json('message')); // get message
 
                 // return error with status
-                return redirect('edit_budgeting')->withErrors($doRetrive->json('status'));
+                return redirect('edit_budgeting/', compact('data'))->withErrors($doRetrive->json('status'));
             }
 
             return redirect('budgeting')->withErrors($doRetrive->json());
@@ -94,7 +94,7 @@ class BudgetingController extends Controller
         ]);
 
         if ($doPatch->successful()) {
-            return view('budgeting')->with('success', 'Edit Rekening berhasil');
+            return redirect('budgeting')->with('success', 'Edit Rekening berhasil');
         } else {
             if (array_key_exists('message', $doPatch->json())) {
                 //                dd($doPatch->json('message'));

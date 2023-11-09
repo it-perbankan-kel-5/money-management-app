@@ -16,6 +16,7 @@
                         <table class="table">
                             <thead>
                                 <tr>  
+                                    <th>Id</th>
                                     <th>Nama</th>
                                     <th>Deskripsi</th>
                                     <th>Current Budget</th>
@@ -27,6 +28,7 @@
                             <tbody>
                                 @foreach ($data as $budgetin)
                                     <tr>
+                                        <td>{{ $budgetin['id']}}</td>
                                         <td>{{ $budgetin['name'] }}</td>
                                         <td>{{ $budgetin['description'] }}</td>
                                         <td>{{ $budgetin['current_amount'] }}</td>
@@ -34,7 +36,7 @@
                                         <td>{{ $budgetin['type'] }}</td>
                                         <td>
                                             
-                                            <a href="{{ url('/budgeting/edit/'. $budgetin->id) }}"
+                                            <a href="{{ url('/budgeting/edit/'. $budgetin['id']) }}"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="text-light far fa-edit"></i>
                                             </a>
