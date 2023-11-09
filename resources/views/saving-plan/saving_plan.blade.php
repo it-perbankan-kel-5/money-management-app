@@ -13,52 +13,54 @@
                         </button>
                     </div>
                     <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Deskripsi</th>
-                                    <th>Current Amount</th>
-                                    <th>Target Amount</th>
-                                    <th>Target Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data as $savingplan)
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>{{ $savingplan['name'] }}</td>
-                                        <td>{{ $savingplan['description'] }}</td>
-                                        <td>{{ $savingplan['current_amount'] }}</td>
-                                        <td>{{ $savingplan['target_amount'] }}</td>
-                                        <td>{{ $savingplan['target_date'] }}</td>
-                                        <td>
-
-                                            <a href="{{ url('/saving-plan/edit/' . $savingplan['id']) }}"
-                                                class="btn btn-warning btn-sm">
-                                                <i class="text-light far fa-edit"></i>
-                                            </a>
-
-                                            <button class="btn btn-warning btn-sm edit-button"
-                                                data-id="{{ $savingplan['id'] }}">
-                                                <i class="fas fa-coins"></i>
-                                            </button>
-
-
-                                            <button class="btn btn-danger btn-sm delete-button"
-                                                data-id="{{ $savingplan['id'] }}">
-                                                <i class="text-light far fa-trash-alt"></i>
-                                            </button>
-                                            <form action="{{ url('/saving-plan/delete/' . $savingplan['id']) }}"
-                                                method="POST" class="d-none" id="delete-form-{{ $savingplan['id'] }}">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </td>
+                                        <th>Nama</th>
+                                        <th>Deskripsi</th>
+                                        <th>Current Amount</th>
+                                        <th>Target Amount</th>
+                                        <th>Target Date</th>
+                                        <th>Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $savingplan)
+                                        <tr>
+                                            <td>{{ $savingplan['name'] }}</td>
+                                            <td>{{ $savingplan['description'] }}</td>
+                                            <td>{{ $savingplan['current_amount'] }}</td>
+                                            <td>{{ $savingplan['target_amount'] }}</td>
+                                            <td>{{ $savingplan['target_date'] }}</td>
+                                            <td>
+
+                                                <button class="btn btn-primary btn-sm edit-button"
+                                                    data-id="{{ $savingplan['id'] }}">
+                                                    {{-- <i class="fas fa-coins"></i> --}}
+                                                    <i class="fa-solid fa-coins" style="color: #ffffff;"></i>
+                                                </button>
+
+                                                <a href="{{ url('/saving-plan/edit/' . $savingplan['id']) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="text-light far fa-edit"></i>
+                                                </a>
+
+                                                <button class="btn btn-danger btn-sm delete-button"
+                                                    data-id="{{ $savingplan['id'] }}">
+                                                    <i class="text-light far fa-trash-alt"></i>
+                                                </button>
+                                                <form action="{{ url('/saving-plan/delete/' . $savingplan['id']) }}"
+                                                    method="POST" class="d-none" id="delete-form-{{ $savingplan['id'] }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

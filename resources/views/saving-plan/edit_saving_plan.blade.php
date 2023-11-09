@@ -10,7 +10,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Tambah Rekening</div>
+                        <div class="card-header">Edit Saving Plan</div>
 
                         <div class="card-body">
 
@@ -39,7 +39,7 @@
 
                                     <div class="form-group">
                                         <label for="saving_target_date">Target Date</label>
-                                        <input type="text" name="saving_target_date" class="form-control"
+                                        <input type="date" name="saving_target_date" class="form-control"
                                             value="{{ $data['target_date'] }}">
                                     </div>
 

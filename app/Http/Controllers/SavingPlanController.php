@@ -8,11 +8,6 @@ use function Laravel\Prompts\error;
 
 class SavingPlanController extends Controller
 {
-    // Retrieve ALl User saving_plan
-    // public function index()
-    // {
-    //     return view('savingplan');
-    // }
     public function index()
     {
         $doRetrive = Http::accept('application/json')
@@ -25,7 +20,7 @@ class SavingPlanController extends Controller
             $data = $doRetrive->json('data');
 
             return view(
-                'saving-plan.savingplan',
+                'saving-plan.saving_plan',
                 compact('data')
             );
         } else {
@@ -44,19 +39,15 @@ class SavingPlanController extends Controller
     // Create User saving_plan
     public function create_saving_plan()
     {
-        // $doRetrive = Http::accept('application/json')
-        //     ->withToken(session()->get('user_token'))
-        //     ->get(API_URL . '/user/rekening/type/2');
-
         $doRetrive = Http::accept('application/json')
             ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user/rekening');
+            ->get(API_URL . '/user/rekening/type/2');
 
         if ($doRetrive->successful()) {
             $data = $doRetrive->json('data');
 
             return view(
-                'saving-plan.create_savingplan',
+                'saving-plan.create_saving_plan',
                 compact('data')
             );
         } else {
@@ -85,7 +76,7 @@ class SavingPlanController extends Controller
                 "saving_target_date"    => $request->saving_target_date,
                 "reminder_date"         => $request->reminder_date,
             ]);
-        // dd($doPost);
+
         if ($doPost->successful()) {
             return redirect('saving-plan')->with('success', 'Tambah Saving Plan berhasil');
         } else {
@@ -95,7 +86,6 @@ class SavingPlanController extends Controller
 
                 return redirect('saving-plan/create')->withErrors($doPost->json('status'))->withInput();
             }
-
             //            dd($doPost->body());
             return redirect('saving-plan/create')->withErrors($doPost->json())->withInput();
         }
@@ -114,7 +104,7 @@ class SavingPlanController extends Controller
             $data = $doRetrive->json('data');
 
             return view(
-                'saving-plan.edit_savingplan',
+                'saving-plan.edit_saving_plan',
                 compact('data')
             );
         } else {
@@ -143,7 +133,7 @@ class SavingPlanController extends Controller
             ]);
 
         if ($doPatch->successful()) {
-            return redirect('saving-plan')->with('success', 'Edit saving_plan berhasil');
+            return redirect('saving-plan')->with('success', 'Edit Saving Plan berhasil');
         } else {
             if (array_key_exists('message', $doPatch->json())) {
                 //                dd($doPatch->json('message'));

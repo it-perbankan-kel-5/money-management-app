@@ -2,12 +2,12 @@
 @section('tittle','Rakamin - Dashboard')
 @section('head','Dashboard')
 @section('content')
-@inject('rekening','App\Http\Controllers\BudgetingController')
-            <form method="POST" action="{{ url('') }}" class="pt-3">
+{{-- @inject('rekening','App\Http\Controllers\BudgetingController') --}}
+            <form method="POST" action="{{ url('/budget/store') }}" class="pt-3">
               @csrf
 
                 <!-- TODO - pidahin rekening ke select field dengan value id rekening -->
-                {{json_encode($rekening::get_rekening_utama(), JSON_PRETTY_PRINT)}}
+                {{-- {{json_encode($rekening::get_rekening_utama(), JSON_PRETTY_PRINT)}} --}}
 
               <div class="form-group">
                 <label for="exampleInputEmail">Budget Name</label>
@@ -41,7 +41,7 @@
                       <i class="ti-user text-primary"></i>
                     </span>
                   </div>
-                  <input type="number" class="form-control form-control-lg border-left-0" name="budget_limit_target" placeholder="Budget Limit Targetr" required>
+                  <input type="number" class="form-control form-control-lg border-left-0" name="budget_limit_target" placeholder="Budget Limit Target" required>
                 </div>
               </div>
 

@@ -14,33 +14,33 @@
 
                         <div class="card-body">
 
-                            @foreach ($data as $data)
-                                <form method="POST" action="{{ url('/update_rekening/' . $data['id']) }}">
+                            @foreach ($data as $rekening)
+                                <form method="POST" action="{{ url('/rekening/update/' . $rekening['id']) }}">
                                     @csrf
                                     @method('PATCH')
 
                                     <div class="form-group">
                                         <label for="rekening_number">Nomor Rekening</label>
                                         <input type="text" name="rekening_number" class="form-control"
-                                            value="{{ $data['no_rekening'] }}" readonly>
+                                            value="{{ $rekening['no_rekening'] }}" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="rekening_type">Tipe Rekening</label>
                                         <input type="text" name="rekening_type" class="form-control"
-                                            value="{{ $data['rekening_type'] }}" readonly>
+                                            value="{{ $rekening['rekening_type'] }}" readonly>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="rekening_description">Deskripsi Rekening</label>
                                         <input type="text" name="rekening_description" class="form-control"
-                                            value="{{ $data['description'] }}">
+                                            value="{{ $rekening['description'] }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="rekening_alias">Alias Rekening</label>
                                         <input type="text" name="rekening_alias" class="form-control"
-                                            value="{{ $data['alias'] }}">
+                                            value="{{ $rekening['alias'] }}">
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Save</button>

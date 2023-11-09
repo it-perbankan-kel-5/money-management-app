@@ -2,25 +2,35 @@
 @section('title', 'Rakamin - Profile')
 @section('head', 'User Profile')
 @section('content')
+
+    <!-- Add viewport meta tag -->
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
+
     <section class="vh-90" style="background-color: #f4f5f7;">
-        <div class="container py-5 h-90">
+        <div class="container-fluid py-3">
             <div class="row d-flex justify-content-center align-items-center h-90">
-                <div class="col col-lg-9 mb-4 mb-lg-0">
+                <div class="col-md-9 col-sm-12 mb-4 mb-lg-0">
                     <div class="card mb-3" style="border-radius: .5rem;">
                         <div class="row g-0">
-                            <div class="col-md-3 gradient-custom text-center text-white"
+                            <div class="col-md-3 col-sm-12 gradient-custom d-flex flex-column align-items-center text-white"
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                     alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                                <h5>Atsumichi</h5>
-                                <a href="{{ url('/edit_profile') }}" style="color: inherit;">
+
+                                <h5>{{ $data['first_name'] }} {{ $data['last_name'] }}</h5>
+
+                                <a class="content-justify-center" href="{{ url('/profile/edit') }}" style="color: inherit;">
                                     <i class="far fa-edit my-4"></i>
                                 </a>
-                                <button type="button" class="btn btn-primary btn-icon-text d-block mt-5 ml-2"
-                                    data-toggle="modal" data-target="#exampleModal" data-whatever="">Change Password
+
+                                <button type="button" class="btn btn-primary btn-icon-text content-justify-center my-3"
+                                    data-toggle="modal" data-target="#changePasswordModal" data-whatever="">Change Password
                                 </button>
+
                             </div>
-                            <div class="col-md-8">
+
+                            <div class="col-md-8 col-sm-12">
                                 <div class="card-body p-5">
                                     <h6 class="align-center">Profile</h6>
                                     <hr class="mt-0 mb-4">
@@ -61,7 +71,7 @@
         </div>
     </section>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -71,6 +81,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <form method="POST" action="{{ url('/profile/change_password') }}">
                         @csrf
@@ -93,6 +104,7 @@
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>

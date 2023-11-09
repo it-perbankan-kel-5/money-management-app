@@ -19,7 +19,7 @@ class UserController extends Controller
             // dd($doRetrive->json('data'));
             $data = $doRetrive->json('data');
 
-            return view('profile', compact('data'));
+            return view('profile.profile', compact('data'));
         } else {
             if (array_key_exists('message', $doRetrive->json())) {
                 //                dd($doDelete->json('message'));
@@ -33,7 +33,7 @@ class UserController extends Controller
         }
     }
 
-    public function edit_user_profile(Request $request)
+    public function edit_profile(Request $request)
     {
         $doRetrive = Http::accept('application/json')
             ->withToken(session()->get('user_token'))
@@ -43,7 +43,7 @@ class UserController extends Controller
             // dd($doRetrive->json('data'));
             $data = $doRetrive->json('data');
 
-            return view('edit_profile', compact('data'));
+            return view('profile.edit_profile', compact('data'));
         } else {
             if (array_key_exists('message', $doRetrive->json())) {
                 //                dd($doDelete->json('message'));
@@ -57,7 +57,7 @@ class UserController extends Controller
         }
     }
 
-    public function update_user_profile(Request $request)
+    public function update_profile(Request $request)
     {
         $doRetrive = Http::accept('application/json')
             ->withToken(session()->get('user_token'))

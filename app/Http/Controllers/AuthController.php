@@ -10,12 +10,12 @@ class AuthController extends Controller
 {
     public function signin_index()
     {
-        return view('auth.signin');
+        return view('auth.login');
     }
 
     public function signup_index()
     {
-        return view('auth.signup');
+        return view('auth.register');
     }
 
     public function login(Request $request)
