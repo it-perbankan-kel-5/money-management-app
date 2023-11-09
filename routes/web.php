@@ -54,32 +54,33 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
     Route::PATCH('/update_rekening/{id}', [RekeningController::class, 'update_rekening']);
     Route::DELETE('/rekening/delete/{id}', [RekeningController::class, 'delete_rekeningByid']);
 
-    /**
-     * View untuk budgeting
-     */
-    // TODO - cek lagi untuk FE
-    Route::get('/budget/add', function () {
-        return view('add_budgeting');
-    });
-    // TODO - cek lagi untuk FE
-    Route::get('/budget', [BudgetingController::class, 'index']);
-    // TODO - ganti ke view untuk edit selected user budgeting
-    Route::get('/budget/edit', function () {
-        return view('');
-    });
-    // TODO - ganti ke view untuk delete selected user budgeting
-    Route::get('/budget/delete', function () {
-        return view('');
-    });
+    // /**
+    //  * View untuk budgeting
+    //  */
+    // // TODO - cek lagi untuk FE
+    // Route::get('/budget/add', function () {
+    //     return view('add_budgeting');
+    // });
+    // // TODO - cek lagi untuk FE
+    // Route::get('/budget', [BudgetingController::class, 'index']);
+    // // TODO - ganti ke view untuk edit selected user budgeting
+    // Route::get('/budget/edit', function () {
+    //     return view('');
+    // });
+    // // TODO - ganti ke view untuk delete selected user budgeting
+    // Route::get('/budget/delete', function () {
+    //     return view('budgeting');
+    // });
 
     /**
      * REST controller buat budget
      */
     Route::GET('/budgeting', [BudgetingController::class, 'index']);
-    Route::GET('/user-budgeting', [BudgetingController::class, 'get_user_budgeting']);
-    Route::POST('/add-budget', [BudgetingController::class, 'add_budget']);
-    Route::PATCH('/edit-budget/{id}', [BudgetingController::class, 'edit_budgeting']);
-    Route::DELETE('/delete-budget/{id}', [BudgetingController::class, 'delete_budgeting']);
+    Route::GET('/budgeting/create', [BudgetingController::class, 'create_budgeting']);
+    Route::POST('/budgeting/store', [BudgetingController::class, 'add_budget']);
+    Route::GET('/budgeting/edit/{id}', [BudgetingController::class, 'edit_budgeting']);
+    Route::PATCH('/budgeting/update/{id}', [BudgetingController::class, 'update_budgeting']);
+    Route::DELETE('/budgeting/delete/{id}', [BudgetingController::class, 'delete_budgeting']);
 
     // Saving Plan
     Route::GET('/saving-plan', [SavingPlanController::class, 'index']);
