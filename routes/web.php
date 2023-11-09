@@ -85,8 +85,9 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
     Route::GET('/saving-plan', [SavingPlanController::class, 'index']);
     Route::GET('/saving-plan/create', [SavingPlanController::class, 'create_saving_plan']);
     Route::POST('/saving-plan/store', [SavingPlanController::class, 'store_saving_plan']);
-    Route::GET('/saving-plan/edit/{id}', [SavingPlanController::class, 'edit_rekening']);
-    Route::PATCH('/saving-plan/update/{id}', [SavingPlanController::class, 'update_rekening']);
-    Route::DELETE('/saving-plan/delete/{id}', [SavingPlanController::class, 'delete_rekeningByid']);
+    Route::GET('/saving-plan/edit/{id}', [SavingPlanController::class, 'edit_saving_plan']);
+    Route::PATCH('/saving-plan/update/{id}', [SavingPlanController::class, 'update_saving_plan']);
+    Route::PATCH('/saving-plan/add-amount/{id}', [SavingPlanController::class, 'add_amount_saving_plan']);
+    Route::DELETE('/saving-plan/delete/{id}', [SavingPlanController::class, 'delete_saving_plan']);
 
 });

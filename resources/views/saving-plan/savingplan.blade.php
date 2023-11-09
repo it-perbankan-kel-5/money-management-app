@@ -33,20 +33,23 @@
                                         <td>{{ $savingplan['target_amount'] }}</td>
                                         <td>{{ $savingplan['target_date'] }}</td>
                                         <td>
-                                            <!-- Tambahkan tombol/tindakan untuk mengedit atau menghapus savingplan -->
-                                            <a href="{{ url('/edit_savingplan/' . $savingplan['id']) }}"
+
+                                            <a href="{{ url('/saving-plan/edit/' . $savingplan['id']) }}"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="text-light far fa-edit"></i>
                                             </a>
 
-                                            <a href="{{ url('/savingplan/delete/' . $savingplan['id']) }}"
-                                                class="btn btn-danger btn-sm">
-                                                <i class="text-light far fa-trash-alt"></i>
-                                            </a>
+                                            <button class="btn btn-warning btn-sm edit-button"
+                                                data-id="{{ $savingplan['id'] }}">
+                                                <i class="fas fa-coins"></i>
+                                            </button>
 
-                                            <button class="btn btn-danger delete-button"
-                                                data-id="{{ $savingplan['id'] }}">Hapus</button>
-                                            <form action="{{ url('/savingplan/delete/' . $savingplan['id']) }}"
+
+                                            <button class="btn btn-danger btn-sm delete-button"
+                                                data-id="{{ $savingplan['id'] }}">
+                                                <i class="text-light far fa-trash-alt"></i>
+                                            </button>
+                                            <form action="{{ url('/saving-plan/delete/' . $savingplan['id']) }}"
                                                 method="POST" class="d-none" id="delete-form-{{ $savingplan['id'] }}">
                                                 @csrf
                                                 @method('DELETE')
@@ -72,7 +75,7 @@
 
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const rekeningId = this.getAttribute('data-id');
+                    const savingplanId = this.getAttribute('data-id');
                     Swal.fire({
                         title: 'Konfirmasi Hapus Rekening',
                         text: 'Apakah Anda yakin ingin menghapus rekening ini?',
@@ -86,9 +89,57 @@
                         if (result.isConfirmed) {
                             // Submit form dengan metode POST
                             const form = document.getElementById('delete-form-' +
-                                rekeningId);
+                                savingplanId);
                             form.submit();
                         }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menangkap semua tombol "Edit" dengan class "edit-button"
+            const editButtons = document.querySelectorAll('.edit-button');
+
+            // Menambahkan event listener untuk setiap tombol "Edit"
+            editButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    // Mendapatkan id dari tombol yang diklik menggunakan atribut data-id
+                    const savingPlanId = button.getAttribute('data-id');
+
+                    Swal.fire({
+                        title: "Add Amount",
+                        input: "number",
+                        inputAttributes: {
+                            autocapitalize: "off"
+                        },
+                        showCancelButton: true,
+                        confirmButtonText: "Submit",
+                        showLoaderOnConfirm: true,
+                        preConfirm: async (amount) => {
+                            try {
+                                // Mengirim data menggunakan form Laravel
+                                const form = document.createElement('form');
+                                form.method = 'POST';
+                                form.action =
+                                    `{{ url('/saving-plan/add-amount/${savingPlanId}') }}`;
+                                form.innerHTML = `
+                                @csrf
+                                @method('PATCH')
+                                <input type="number" name="amount" value="${amount}" hidden>
+                            `;
+
+                                document.body.appendChild(form);
+                                form.submit();
+                            } catch (error) {
+                                Swal.showValidationMessage(`
+                                Request failed: ${error}
+                            `);
+                            }
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
                     });
                 });
             });

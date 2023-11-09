@@ -2,8 +2,7 @@
 @section('tittle','Rakamin - Dashboard')
 @section('head','Budgeting')
 @section('content')
-<div class="row"></div>
-<div class="row">
+
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card position-relative">
       <div class="card-body">
@@ -74,7 +73,7 @@
 </div>
 
 {{-- Data analytic --}}
-    {{json_encode($analytic, JSON_PRETTY_PRINT)}}
+    {{-- {{json_encode($analytic, JSON_PRETTY_PRINT)}} --}}
 
 {{-- Add Budget --}}
 <a href="/addbudgeting"><div id="add-trigger" class=""><i class="icon-add"></i></div></a>

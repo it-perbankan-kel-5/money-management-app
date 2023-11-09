@@ -15,7 +15,7 @@
                         <div class="card-body">
 
                             @foreach ($data as $data)
-                                <form method="POST" action="{{ url('/update_savingplan/' . $data['id']) }}">
+                                <form method="POST" action="{{ url('/saving-plan/update/' . $data['id']) }}">
                                     @csrf
                                     @method('PATCH')
 
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="saving_target_amount">Target Amount</label>
                                         <input type="text" name="saving_target_amount" class="form-control"
-                                            value="{{ $data['current_amount'] }}">
+                                            value="{{ $data['target_amount'] }}">
                                     </div>
 
                                     <div class="form-group">

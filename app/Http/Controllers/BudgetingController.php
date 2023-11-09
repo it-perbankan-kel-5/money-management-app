@@ -35,9 +35,9 @@ class BudgetingController extends Controller
         ->post(API_URL . '/user/budget-limit', [
             "rekening_id" => $request->rekening_id,
             "budget_limit_type_id"  => $request->budget_limit_type_id,
-            "budget_name"         => $request->budget_name,
-            "budget_description"  => $request->budget_description,
-            "budget_limit_target" => $request->budget_limit_target,
+            "budget_name"           => $request->budget_name,
+            "budget_description"    => $request->budget_description,
+            "budget_limit_target"   => $request->budget_limit_target,
         ]);
 
         if ($doPost->successful()) {

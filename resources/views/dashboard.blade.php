@@ -213,9 +213,9 @@
 
     <!-- TODO - Proses data analytic -->
     <br>
-    {{json_encode($analytic_income, JSON_PRETTY_PRINT)}}
+    {{-- {{json_encode($analytic_income, JSON_PRETTY_PRINT)}} --}}
     <br>
-    {{json_encode($analytic_expense, JSON_PRETTY_PRINT)}}
+    {{-- {{json_encode($analytic_expense, JSON_PRETTY_PRINT)}} --}}
 
     <!-- TODO - Proses data analytic -->
     <br>

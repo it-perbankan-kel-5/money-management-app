@@ -46,6 +46,11 @@
                                     <input type="date" name="saving_target_date" class="form-control" value="{{ old('saving_target_date') }}" required>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="saving_target_date">Reminder</label>
+                                    <input type="date" name="reminder_date" class="form-control" value="{{ old('reminder_date') }}" required>
+                                </div>
+
                                 <div class="form-group d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2"
                                         onclick="history.back()">Close</button>
