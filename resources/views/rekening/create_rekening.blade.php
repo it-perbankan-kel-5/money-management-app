@@ -9,16 +9,15 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header bg-inverse-primary"><strong>Tambah Rekening</strong></div>
+                        <div class="card-header bg-inverse-primary text-light"><strong>Tambah Rekening</strong></div>
                         <div class="card-body">
 
                             <form class="cmxform" novalidate="novalidate" id="commentForm" method="POST" action="{{ url('/rekening/store') }}">
                                 @csrf
 
-                                <div class="form-group has-danger">
+                                <div class="form-group">
                                     <label for="rekening_number">Nomor Rekening</label>
-                                    <input id="rekening_number" type="text" name="rekening_number" class="form-control form-control-danger" required aria-invalid="true">
-                                    <label id="rekening_number-error" class="error mt-2 text-danger" for="rekening_number">This field is required.</label>
+                                    <input type="text" name="rekening_number" class="form-control" required>
                                 </div>
 
                                 <div class="form-group">
@@ -26,7 +25,7 @@
                                     <select name="rekening_type" class="form-control" required>
                                         <option value="1">Rekening Utama</option>
                                         <option value="2">Rekening Tabungan</option>
-                                        <option value="3">Rekening Investasi</option>
+                                        {{-- <option value="3">Rekening Investasi</option> --}}
                                     </select>
                                 </div>
 
