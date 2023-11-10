@@ -28480,6 +28480,11 @@ div.tagsinput span.tag a {
   }
 }
 
+.card-container {
+  max-height: 320px;
+  overflow: auto;
+}
+
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 60px);

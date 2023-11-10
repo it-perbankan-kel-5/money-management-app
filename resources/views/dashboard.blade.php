@@ -138,10 +138,10 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Saving Plan</h4>
-                    <div class="list-wrapper list-wrapper-sm">
+                    {{-- <div class="list-wrapper list-wrapper-sm">
                         <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
                             {{-- TODO - CEK LAGI BUAT FE --}}
-                            @foreach ($saving_plan as $sp)
+                            {{-- @foreach ($saving_plan as $sp)
                                 <li class="d-flex align-items-center">
                                     <div class="card-check">
                                         <label class="card-check-label">
@@ -162,8 +162,33 @@
                                         </label>
                                     </div>
                                 </li>
-                            @endforeach
-                        </ul>
+                            @endforeach --}}
+                        {{-- </ul> --}}
+                    {{-- </div> --}}
+
+                    <div class="row">
+                        @foreach ($saving_plan as $sp)
+                        <div class="card-container col-md-12 mb-5">
+                            <div class="card col-md-12 mb-2 card-inverse-light">
+                                <div class="card-body text-black">
+                                    <h5>
+                                        <input class="checkbox" type="checkbox">
+                                        {{ $sp['name'] }}
+                                    </h5>
+                                    <p class="card-text">Current : Rp {{ $sp['current_amount'] }} -
+                                        {{ $sp['target_amount'] }}</p>
+                                    @php($rateSp = ($sp['current_amount'] / $sp['target_amount']) * 100)
+                                    <div class="progress progress-lg">
+                                        <div class="progress-bar bg-primary" role="progressbar"
+                                            style="width:{{ $rateSp }}%" aria-valuenow="{{ $rateSp }}"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            {{ $rateSp }}%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
