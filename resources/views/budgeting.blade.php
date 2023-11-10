@@ -2,8 +2,7 @@
 @section('tittle','Rakamin - Dashboard')
 @section('head','Budgeting')
 @section('content')
-<div class="row"></div>
-<div class="row">
+
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card position-relative">
       <div class="card-body">
@@ -39,7 +38,7 @@
 
 <div class="col-md-6 grid-margin transparent">
   <div class="row">
-      @foreach($data as $item)
+      {{-- @foreach($data as $item)
           <div class="col-md-6 mb-4 stretch-card transparent">
               <div class="card card-tale">
                   <div class="card-body">
@@ -51,7 +50,7 @@
                   </div>
               </div>
           </div>
-      @endforeach
+      @endforeach --}}
 {{--    <div class="col-md-6 mb-4 stretch-card transparent">--}}
 {{--      <div class="card card-tale">--}}
 {{--        <div class="card-body">--}}
@@ -77,6 +76,6 @@
     {{json_encode($analytic, JSON_PRETTY_PRINT)}}
 
 {{-- Add Budget --}}
-<a href="/addbudgeting"><div id="add-trigger" class=""><i class="icon-add"></i></div></a>
+<a href="/budget/create"><div id="add-trigger" class=""><i class="icon-add"></i></div></a>
 
 @endsection

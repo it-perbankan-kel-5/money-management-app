@@ -67,6 +67,7 @@
                         <h3 class="my-3 font-weight-bold">@yield('head')</h3>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
@@ -144,12 +145,15 @@
 
                     </li>
                 </ul>
+
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
                     data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
+
             </div>
         </nav>
+
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
@@ -165,6 +169,7 @@
                             aria-controls="chats-section">CHATS</a>
                     </li>
                 </ul>
+
                 <div class="tab-content" id="setting-content">
                     <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
                         aria-labelledby="todo-section">
@@ -178,7 +183,9 @@
                                 </div>
                             </form>
                         </div>
+
                         <div class="list-wrapper px-3">
+
                             <ul class="d-flex flex-column-reverse todo-list">
                                 <li>
                                     <div class="form-check">
@@ -189,6 +196,7 @@
                                     </div>
                                     <i class="remove ti-close"></i>
                                 </li>
+
                                 <li>
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -198,6 +206,7 @@
                                     </div>
                                     <i class="remove ti-close"></i>
                                 </li>
+
                                 <li>
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -207,6 +216,7 @@
                                     </div>
                                     <i class="remove ti-close"></i>
                                 </li>
+
                                 <li class="completed">
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -216,6 +226,7 @@
                                     </div>
                                     <i class="remove ti-close"></i>
                                 </li>
+
                                 <li class="completed">
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -227,7 +238,9 @@
                                 </li>
                             </ul>
                         </div>
+
                         <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+
                         <div class="events pt-4 px-3">
                             <div class="wrapper d-flex mb-2">
                                 <i class="ti-control-record text-primary mr-2"></i>
@@ -245,6 +258,7 @@
                             <p class="text-gray mb-0 ">Call Sarah Graves</p>
                         </div>
                     </div>
+
                     <!-- To do section tab ends -->
                     <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
                         <div class="d-flex align-items-center justify-content-between border-bottom">
@@ -321,34 +335,44 @@
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
+
+                    {{-- Dashboard --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/budgeting">
-                            <i class="mdi mdi-wallet menu-icon"></i>
-                            <span class="menu-title">Budgeting</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">
-                            <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">User Profile</span>
-                        </a>
-                    </li>
+
+                    {{-- Rekening --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/rekening">
                             <i class="fa-solid fa-money-check-dollar menu-icon"></i>
                             <span class="menu-title">Rekening</span>
                         </a>
                     </li>
+
+                    {{-- Budgeting --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/savingplan">
+                        <a class="nav-link" href="/budgeting">
+                            <i class="mdi mdi-wallet menu-icon"></i>
+                            <span class="menu-title">Budgeting</span>
+                        </a>
+                    </li>
+
+                    {{-- Saving Plan --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/saving-plan">
                             <i class="fa-solid fa-piggy-bank menu-icon"></i>
                             <span class="menu-title">Saving Plan</span>
+                        </a>
+                    </li>
+
+                    {{-- Profile --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">User Profile</span>
                         </a>
                     </li>
                 </ul>
@@ -366,11 +390,12 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.
-                            <a href="https://www.bootstrapdash.com/" target="_blank">Rakamin Banking App</a> from
-                            Kelompok 5. All rights reserved.</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                            Copyright © 2023 FlexiFund
+                        </span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
-                            with <i class="ti-heart text-danger ml-1"></i></span>
+                            with <i class="ti-heart text-danger ml-1"></i>
+                        </span>
                     </div>
                 </footer>
                 <!-- partial -->
@@ -398,7 +423,7 @@
     <!-- End plugin js for SweetAlert -->
 
     <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js>') }}"></script>
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('assets/js/template.js') }}"></script>
     <script src="{{ asset('assets/js/settings.js') }}"></script>
@@ -406,7 +431,6 @@
     <!-- endinject -->
 
     <!-- Custom js for this page-->
-    <script src="{{ asset('assets/js/dashboard.js') }} "></script>
     <script src="{{ asset('assets/js/budgetin-chart.js') }} "></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }} "></script>
     <!-- End custom js for this page-->

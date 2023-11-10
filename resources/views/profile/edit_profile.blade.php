@@ -12,35 +12,38 @@
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                     alt="Avatar" class="img-fluid my-5" style="width: 90px;" />
-                                <h5>{{ $data['first_name'] }}</h5>
-                                {{-- <a class="text-primary" href="edit_profile.blade.php"><i class="far fa-edit"></i></a> --}}
+                                <h5>{{ $data['first_name'] }} {{ $data['last_name'] }}</h5>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-5">
                                     <h6 class="align-center">Profile</h6>
                                     <hr class="mt-0 mb-4">
 
-                                    <form method="POST" action="{{ url('/edit_profile/update') }}">
+                                    <form method="POST" action="{{ url('/profile/update') }}">
                                         @csrf
                                         @method('PATCH')
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
                                                 <h6>First Name</h6>
-                                                <input type="text" class="form-control" name="fname" value="{{ $data['first_name'] }}">
+                                                <input type="text" class="form-control" name="fname"
+                                                    value="{{ $data['first_name'] }}">
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Last Name</h6>
-                                                <input type="text" class="form-control" name="lname" value="{{ $data['last_name'] }}">
+                                                <input type="text" class="form-control" name="lname"
+                                                    value="{{ $data['last_name'] }}">
                                             </div>
                                         </div>
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
                                                 <h6>Email</h6>
-                                                <input type="email" class="form-control" name="email" value="{{ $data['email'] }}">
+                                                <input type="email" class="form-control" name="email"
+                                                    value="{{ $data['email'] }}">
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Phone</h6>
-                                                <input type="number" class="form-control" name="phone_number" value="{{ $data['phone_number'] }}">
+                                                <input type="number" class="form-control" name="phone_number"
+                                                    value="{{ $data['phone_number'] }}">
                                             </div>
                                         </div>
                                         <div class="row pt-1">
@@ -53,7 +56,6 @@
                                             <button type="submit" class="btn btn-primary text-light">Save</button>
                                         </div>
                                     </form>
-                                     
                                 </div>
                             </div>
                         </div>

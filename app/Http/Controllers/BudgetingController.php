@@ -27,17 +27,54 @@ class BudgetingController extends Controller
             ->with('analytic', $retrieveBudgeting['budget_analytic']->json(['data']));
     }
 
+
+    public function get_user_budgeting()
+    {
+        $retrieveBudgeting = Http::contentType('application/json')
+        ->withToken(session()->get('user_token'))
+        ->get(API_URL . '/user/budget-limit/');
+
+        if ($retrieveBudgeting->successful()) {
+            // dd($retrieveBudgeting->json('data'));
+
+            /**
+             * TODO - ubah view khusus untuk list user budgeting
+             */
+            return view('add_budgeting')->with('data', $retrieveBudgeting->json('data'));
+        } else {
+            if (array_key_exists('message', $retrieveBudgeting->json())) {
+                //                dd($doDelete->json('message'));
+                error($retrieveBudgeting->json('message')); // get message
+
+                // return error with status
+                return redirect('budgeting')->withErrors($retrieveBudgeting->json('status'));
+            }
+            return redirect('budgeting')->withErrors($retrieveBudgeting->json());
+        }
+    }
+
+    public static function get_rekening_utama()
+    {
+        $token = session()->get('user_token');
+
+        $retrieveBudgeting = Http::pool(function (Pool $pool) use ($token) {
+            $pool->as('rekening_utama')->withToken($token)
+                ->get(API_URL . '/user/rekening/type/1');
+        });
+
+        return $retrieveBudgeting['rekening_utama']->json('data');
+    }
+
     public function add_budget(Request $request)
     {
-
         $doPost = Http::contentType('application/json')
         ->withToken(session()->get('user_token'))
         ->post(API_URL . '/user/budget-limit', [
             "rekening_id" => $request->rekening_id,
             "budget_limit_type_id"  => $request->budget_limit_type_id,
-            "budget_name"         => $request->budget_name,
-            "budget_description"  => $request->budget_description,
-            "budget_limit_target" => $request->budget_limit_target,
+            "budget_name"           => $request->budget_name,
+            "budget_description"    => $request->budget_description,
+            "budget_limit_target"   => $request->budget_limit_target,
         ]);
 
         if ($doPost->successful()) {
@@ -50,7 +87,7 @@ class BudgetingController extends Controller
                 return redirect('budgeting')->withErrors($doPost->json('status'));
             }
             //            dd($doPost->body());
-            return redirect('budgeting')->withErrors($doPost->json());
+            return redirect('budgeting')->withErrors($doPost->json())->withInput();
         }
     }
 
@@ -100,38 +137,5 @@ class BudgetingController extends Controller
         }
     }
 
-    public function get_user_budgeting() {
-        $retrieveBudgeting = Http::contentType('application/json')
-            ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user/budget-limit/');
-
-        if ($retrieveBudgeting->successful()) {
-            dd($retrieveBudgeting->json('data'));
-
-            /**
-             * TODO - ubah view khusus untuk list user budgeting
-             */
-//             return view('')->with('data', $retrieveBudgeting->json('data'));
-        } else {
-            if (array_key_exists('message', $retrieveBudgeting->json())) {
-                //                dd($doDelete->json('message'));
-                error($retrieveBudgeting->json('message')); // get message
-
-                // return error with status
-                return redirect('budgeting')->withErrors($retrieveBudgeting->json('status'));
-            }
-            return redirect('budgeting')->withErrors($retrieveBudgeting->json());
-        }
-    }
-
-    public static function get_rekening_utama() {
-        $token = session()->get('user_token');
-
-        $retrieveBudgeting = Http::pool(function (Pool $pool) use ($token) {
-            $pool->as('rekening_utama')->withToken($token)
-                ->get(API_URL . '/user/rekening/type/1');
-        });
-
-        return $retrieveBudgeting['rekening_utama']->json('data');
-    }
+    
 }

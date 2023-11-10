@@ -9,11 +9,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Tambah Rekening</div>
-
+                        <div class="card-header bg-inverse-primary"><strong>Tambah Rekening</strong></div>
                         <div class="card-body">
 
-                            <form method="POST" action="{{ url('/rekening/add') }}">
+                            <form method="POST" action="{{ url('/rekening/store') }}">
                                 @csrf
 
                                 <div class="form-group">
@@ -24,11 +23,9 @@
                                 <div class="form-group">
                                     <label for="rekening_type">Tipe Rekening</label>
                                     <select name="rekening_type" class="form-control" required>
-                                        <!-- Isi pilihan tipe rekening sesuai dengan data yang tersedia -->
                                         <option value="1">Rekening Utama</option>
                                         <option value="2">Rekening Tabungan</option>
                                         <option value="3">Rekening Investasi</option>
-                                        <!-- Tambahkan pilihan lainnya sesuai kebutuhan -->
                                     </select>
                                 </div>
 
@@ -42,7 +39,10 @@
                                     <input type="text" name="rekening_alias" class="form-control">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Tambah Rekening</button>
+                                <div class="form-group d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary mr-2" onclick="history.back()">Close</button>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
                             </form>
                         </div>
                     </div>
