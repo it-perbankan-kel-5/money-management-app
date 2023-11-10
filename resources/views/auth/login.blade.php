@@ -1,6 +1,6 @@
 @extends('components.auth_layout')
 @section('auth')
-<div class="container-scroller">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" /><div class="container-scroller">
   <div class="container-fluid page-body-wrapper full-page-wrapper">
     <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
       <div class="row flex-grow">
@@ -39,8 +39,31 @@
                     </span>
                   </div>
                   <input type="password" class="form-control form-control-lg border-left-0" name="password" id="password" placeholder="Password" required>
-                </div>
+                  <span class="input-group-text bg-transparent">
+                    <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer"></i>
+                  </span>
+                  </div>
               </div>
+              
+              <script>
+                const togglePassword = document.querySelector("#togglePassword");
+                const password = document.querySelector("#password");
+        
+                togglePassword.addEventListener("click", function () {
+                    // toggle the type attribute
+                    const type = password.getAttribute("type") === "password" ? "text" : "password";
+                    password.setAttribute("type", type);
+                    
+                    // toggle the icon
+                    this.classList.toggle("bi-eye");
+                });
+        
+                // prevent form submit
+                const form = document.querySelector("form");
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                });
+            </script>
 
               <div class="my-2 d-flex justify-content-between align-items-center">
                 <div class="form-check">
