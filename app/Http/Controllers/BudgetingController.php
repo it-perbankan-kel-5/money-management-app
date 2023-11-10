@@ -13,27 +13,84 @@ class BudgetingController extends Controller
 {
     public function index()
     {
-        $token = session()->get('user_token');
+        $doRetrive = Http::accept('application/json')
+        ->withToken(session()->get('user_token'))
+        ->get(API_URL . '/user/budget-limit');
 
-        $retrieveBudgeting = Http::pool(function (Pool $pool) use ($token) {
-            $pool->as('budget_data')->withToken($token)
-                ->get(API_URL . '/user/budget-limit/');
-            $pool->as('budget_analytic')->withToken($token)
-                ->get(API_URL . '/user/budget-analytic/');
-        });
+        // dd($doRetrive);
 
-        return view('budgeting')
-        ->with('data', $retrieveBudgeting['budget_data']->json('data'))
-        ->with('analytic', $retrieveBudgeting['budget_analytic']->json(['data']));
+        if ($doRetrive->successful()) {
+            $data = $doRetrive->json('data');
+
+            return view(
+                'budgeting.budgeting',
+                compact('data')
+            );
+        } else {
+            if (array_key_exists('message', $doRetrive->json())) {
+                //                dd($doDelete->json('message'));
+                error($doRetrive->json('message')); // get message
+
+                // return error with status
+                return redirect('dashboard')->withErrors($doRetrive->json('status'));
+            }
+
+            return redirect('dashboard')->withErrors($doRetrive->json());
+        }
     }
 
-    public function add_budget(Request $request)
+    // public function index()
+    // {
+    //     $token = session()->get('user_token');
+
+    //     $retrieveBudgeting = Http::pool(function (Pool $pool) use ($token) {
+    //         $pool->as('budget_data')->withToken($token)
+    //             ->get(API_URL . '/user/budget-limit/');
+    //         $pool->as('budget_analytic')->withToken($token)
+    //             ->get(API_URL . '/user/budget-analytic/');
+    //     });
+
+    //     return view('budgeting.budgeting')
+    //     ->with('data', $retrieveBudgeting['budget_data']->json('data'))
+    //     ->with('analytic', $retrieveBudgeting['budget_analytic']->json(['data']));
+    // }
+
+    // Edit User Budgeting
+    public function create_budgeting()
+    {
+        $doRetrive = Http::accept('application/json')
+        ->withToken(session()->get('user_token'))
+        ->get(API_URL . '/user/rekening/type/1');
+
+        // dd($doRetrive->body());
+        if ($doRetrive->successful()) {
+            $data = $doRetrive->json('data');
+
+            return view(
+                'budgeting.create_budgeting',
+                compact('data')
+            );
+        } else {
+            if (array_key_exists('message', $doRetrive->json())) {
+                //                dd($doDelete->json('message'));
+                error($doRetrive->json('message')); // get message
+
+                // return error with status
+                return redirect('add_budgeting')->withErrors($doRetrive->json('status'));
+            }
+
+            return redirect('budgeting')->withErrors($doRetrive->json());
+        }
+    }
+
+    // Edit User Budgeting
+    public function store_budget(Request $request)
     {
 
         $doPost = Http::contentType('application/json')
         ->withToken(session()->get('user_token'))
         ->post(API_URL . '/user/budget-limit', [
-            "rekening_id" => $request->rekening_id,
+            "rekening_id"           => $request->rekening_id,
             "budget_limit_type_id"  => $request->budget_limit_type_id,
             "budget_name"           => $request->budget_name,
             "budget_description"    => $request->budget_description,
@@ -66,7 +123,7 @@ class BudgetingController extends Controller
             $data = $doRetrive->json('data');
 
             return view(
-                'edit_budgeting',
+                'budgeting.edit_budgeting',
                 compact('data')
             );
         } else {
@@ -125,38 +182,6 @@ class BudgetingController extends Controller
                 return redirect('budgeting')->withErrors($doDelete->json('status'));
             }
             return redirect('budgeting')->withErrors($doDelete->json());
-        }
-    }
-
-
-    public function create_budgeting()
-    {
-        $doRetrive = Http::accept('application/json')
-        ->withToken(session()->get('user_token'))
-        ->get(API_URL . '/user/rekening/type/1');
-
-        // $doRetrive = Http::accept('application/json')
-        //     ->withToken(session()->get('user_token'))
-        //     ->get(API_URL . '/user/rekening');
-
-        // dd($doRetrive->body());
-        if ($doRetrive->successful()) {
-            $data = $doRetrive->json('data');
-
-            return view(
-                'add_budgeting',
-                compact('data')
-            );
-        } else {
-            if (array_key_exists('message', $doRetrive->json())) {
-                //                dd($doDelete->json('message'));
-                error($doRetrive->json('message')); // get message
-
-                // return error with status
-                return redirect('add_budgeting')->withErrors($doRetrive->json('status'));
-            }
-
-            return redirect('budgeting')->withErrors($doRetrive->json());
         }
     }
 }

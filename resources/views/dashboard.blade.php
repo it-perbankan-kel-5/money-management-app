@@ -119,7 +119,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     {{-- TODO - CEK LAGI BUAT FE --}}
-                    {{-- <div class="card-body">
+                    <div class="card-body">
                         <h3 class="card-title">Budget Limit</h3>
                         <p class="card-text">Limit on 1 Month</p>
                         <div class="d-flex justify-content-between">
@@ -131,7 +131,7 @@
                             <div class="progress-bar" role="progressbar" style="width: {{round($rate)}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{round($rate)}}">
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
 

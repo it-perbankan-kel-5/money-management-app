@@ -22,7 +22,7 @@ use App\Http\Controllers\BudgetingMailController;
 */
 
 Route::GET('/', function () {
-    return view('auth.signin');
+    return view('auth.login');
 });
 
 // Login
@@ -58,9 +58,10 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
 
     // Budgeting
     Route::GET('/budgeting', [BudgetingController::class, 'index']);
-    Route::GET('/budgeting/create', [BudgetingController::class, 'get_user_budgeting']);
-    Route::POST('/budgeting/store', [BudgetingController::class, 'add_budget']);
-    Route::PATCH('/budgeting/update/{id}', [BudgetingController::class, 'edit_budgeting']);
+    Route::GET('/budgeting/create', [BudgetingController::class, 'create_budgeting']);
+    Route::POST('/budgeting/store', [BudgetingController::class, 'store_budget']);
+    Route::GET('/budgeting/edit/{id}', [BudgetingController::class, 'edit_budgeting']);
+    Route::PATCH('/budgeting/update/{id}', [BudgetingController::class, 'update_budgeting']);
     Route::DELETE('/budgeting/delete/{id}', [BudgetingController::class, 'delete_budgeting']);
 
     // Saving Plan

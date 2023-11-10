@@ -12,12 +12,13 @@
                         <div class="card-header bg-inverse-primary"><strong>Tambah Rekening</strong></div>
                         <div class="card-body">
 
-                            <form method="POST" action="{{ url('/rekening/store') }}">
+                            <form class="cmxform" novalidate="novalidate" id="commentForm" method="POST" action="{{ url('/rekening/store') }}">
                                 @csrf
 
-                                <div class="form-group">
+                                <div class="form-group has-danger">
                                     <label for="rekening_number">Nomor Rekening</label>
-                                    <input type="text" name="rekening_number" class="form-control" required>
+                                    <input id="rekening_number" type="text" name="rekening_number" class="form-control form-control-danger" required aria-invalid="true">
+                                    <label id="rekening_number-error" class="error mt-2 text-danger" for="rekening_number">This field is required.</label>
                                 </div>
 
                                 <div class="form-group">
