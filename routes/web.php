@@ -57,27 +57,6 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
     Route::DELETE('/rekening/delete/{id}', [RekeningController::class, 'delete_rekening']);
 
     // Budgeting
-    // /**
-    //  * View untuk budgeting
-    //  */
-    // // TODO - cek lagi untuk FE
-    // Route::get('/budget/add', function () {
-    //     return view('add_budgeting');
-    // });
-    // // TODO - cek lagi untuk FE
-    // Route::get('/budget', [BudgetingController::class, 'index']);
-    // // TODO - ganti ke view untuk edit selected user budgeting
-    // Route::get('/budget/edit', function () {
-    //     return view('');
-    // });
-    // // TODO - ganti ke view untuk delete selected user budgeting
-    // Route::get('/budget/delete', function () {
-    //     return view('budgeting');
-    // });
-
-    /**
-     * REST controller buat budget
-     */
     Route::GET('/budgeting', [BudgetingController::class, 'index']);
     Route::GET('/budgeting/create', [BudgetingController::class, 'get_user_budgeting']);
     Route::POST('/budgeting/store', [BudgetingController::class, 'add_budget']);
