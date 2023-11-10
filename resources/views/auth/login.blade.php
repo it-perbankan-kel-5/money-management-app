@@ -1,7 +1,8 @@
 @extends('components.auth_layout')
 @section('auth')
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <div class="container-scroller">        
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
                 <div class="row flex-grow">
                     <div class="col-lg-6 d-flex flex-row scale">
