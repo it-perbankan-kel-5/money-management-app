@@ -28,6 +28,12 @@
 
 <body>
 
+    @if (!empty(session()->get('user_token')))
+        <script>
+            window.location.href = "{{ url('dashboard') }}";
+        </script>
+    @endif
+
     @yield('auth')
 
     <!-- inject:SweetAlert -->
