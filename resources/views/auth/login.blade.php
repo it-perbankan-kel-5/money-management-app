@@ -60,11 +60,11 @@
                                       this.classList.toggle("bi-eye");
                                   });
                           
-                                  // prevent form submit
-                                  const form = document.querySelector("form");
-                                  form.addEventListener('submit', function (e) {
-                                      e.preventDefault();
-                                  });
+                                  // // prevent form submit
+                                  // const form = document.querySelector("form");
+                                  // form.addEventListener('submit', function (e) {
+                                  //     e.preventDefault();
+                                  // });
                               </script>
 
                                 <div class="my-2 d-flex justify-content-between align-items-center">
