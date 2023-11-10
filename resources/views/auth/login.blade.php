@@ -32,17 +32,39 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword">Password</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="fa-solid fa-lock text-primary"></i>
-                                            </span>
-                                        </div>
-                                        <input type="password" class="form-control form-control-lg border-left-0"
-                                            name="password" id="password" placeholder="Password" required>
+                                  <label for="exampleInputPassword">Password</label>
+                                  <div class="input-group">
+                                    <div class="input-group-prepend bg-transparent">
+                                      <span class="input-group-text bg-transparent border-right-0">
+                                        <i class="ti-lock text-primary"></i>
+                                      </span>
+                                    </div>
+                                    <input type="password" class="form-control form-control-lg border-left-0" name="password" id="password" placeholder="Password" required>
+                                    <span class="input-group-text bg-transparent">
+                                      <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer"></i>
+                                    </span>
                                     </div>
                                 </div>
+                                
+                                <script>
+                                  const togglePassword = document.querySelector("#togglePassword");
+                                  const password = document.querySelector("#password");
+                          
+                                  togglePassword.addEventListener("click", function () {
+                                      // toggle the type attribute
+                                      const type = password.getAttribute("type") === "password" ? "text" : "password";
+                                      password.setAttribute("type", type);
+                                      
+                                      // toggle the icon
+                                      this.classList.toggle("bi-eye");
+                                  });
+                          
+                                  // prevent form submit
+                                  const form = document.querySelector("form");
+                                  form.addEventListener('submit', function (e) {
+                                      e.preventDefault();
+                                  });
+                              </script>
 
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">
