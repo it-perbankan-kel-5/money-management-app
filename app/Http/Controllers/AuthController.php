@@ -35,10 +35,10 @@ class AuthController extends Controller
 
                 error($doLogin->json('message')); // get message
 
-                return redirect('login')->withErrors($doLogin->json('status'));
+                return redirect('login')->withErrors($doLogin->json('status'))->withInput();
             }
             // redirect to view
-            return redirect('login')->withErrors($doLogin->json());
+            return redirect('login')->withErrors($doLogin->json())->withInput();
         }
     }
 
@@ -49,7 +49,7 @@ class AuthController extends Controller
 
         if ($doLogout->successful()) {
             session()->flush();
-            return redirect('login')->with('success', 'Logout berhasil');
+            return redirect('login')->with('success', $doLogout->json('status'));
         } else {
             //            dd($doLogout->body());
             return redirect('dashboard')->withErrors('Logout gagal');
