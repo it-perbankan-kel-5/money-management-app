@@ -34,26 +34,29 @@ Route::GET('/register', [AuthController::class, 'signup_index']);
 Route::POST('/register/signup', [AuthController::class, 'register']);
 
 Route::middleware([EnsureTokenIsExists::class])->group(function () {
-    // Logout
-    Route::POST('/logout', [AuthController::class, 'logout']);
+
+    /**
+     * REST controller buat Route
+     */
 
     // Dashboard
     Route::GET('/dashboard', [DashboardController::class, 'index']);
 
     // Profile
     Route::GET('/profile', [UserController::class, 'index']);
-    Route::GET('/edit_profile', [UserController::class, 'edit_user_profile']);
-    Route::PATCH('/edit_profile/update', [UserController::class, 'update_user_profile']);
+    Route::GET('/profile/edit', [UserController::class, 'edit_profile']);
+    Route::PATCH('/profile/update', [UserController::class, 'update_profile']);
     Route::PATCH('/profile/change_password', [UserController::class, 'change_user_password']);
 
     // Rekening
     Route::GET('/rekening', [RekeningController::class, 'index']);
     Route::GET('/rekening/create', [RekeningController::class, 'create_rekening']);
-    Route::POST('/rekening/add', [RekeningController::class, 'add_rekening']);
-    Route::GET('/edit_rekening/{id}', [RekeningController::class, 'edit_rekening']);
-    Route::PATCH('/update_rekening/{id}', [RekeningController::class, 'update_rekening']);
-    Route::DELETE('/rekening/delete/{id}', [RekeningController::class, 'delete_rekeningByid']);
+    Route::POST('/rekening/store', [RekeningController::class, 'store_rekening']);
+    Route::GET('/rekening/edit/{id}', [RekeningController::class, 'edit_rekening']);
+    Route::PATCH('/rekening/update/{id}', [RekeningController::class, 'update_rekening']);
+    Route::DELETE('/rekening/delete/{id}', [RekeningController::class, 'delete_rekening']);
 
+    // Budgeting
     // /**
     //  * View untuk budgeting
     //  */
@@ -76,10 +79,9 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
      * REST controller buat budget
      */
     Route::GET('/budgeting', [BudgetingController::class, 'index']);
-    Route::GET('/budgeting/create', [BudgetingController::class, 'create_budgeting']);
+    Route::GET('/budgeting/create', [BudgetingController::class, 'get_user_budgeting']);
     Route::POST('/budgeting/store', [BudgetingController::class, 'add_budget']);
-    Route::GET('/budgeting/edit/{id}', [BudgetingController::class, 'edit_budgeting']);
-    Route::PATCH('/budgeting/update/{id}', [BudgetingController::class, 'update_budgeting']);
+    Route::PATCH('/budgeting/update/{id}', [BudgetingController::class, 'edit_budgeting']);
     Route::DELETE('/budgeting/delete/{id}', [BudgetingController::class, 'delete_budgeting']);
 
     // Saving Plan
@@ -90,5 +92,8 @@ Route::middleware([EnsureTokenIsExists::class])->group(function () {
     Route::PATCH('/saving-plan/update/{id}', [SavingPlanController::class, 'update_saving_plan']);
     Route::PATCH('/saving-plan/add-amount/{id}', [SavingPlanController::class, 'add_amount_saving_plan']);
     Route::DELETE('/saving-plan/delete/{id}', [SavingPlanController::class, 'delete_saving_plan']);
+    
+    // Logout
+    Route::POST('/logout', [AuthController::class, 'logout']);
 
 });

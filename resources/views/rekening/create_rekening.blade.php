@@ -12,8 +12,7 @@
                         <div class="card-header bg-inverse-primary"><strong>Tambah Rekening</strong></div>
                         <div class="card-body">
 
-                            <form method="POST" action="{{ url('/rekening/add') }}">
-
+                            <form method="POST" action="{{ url('/rekening/store') }}">
                                 @csrf
 
                                 <div class="form-group">
@@ -24,11 +23,9 @@
                                 <div class="form-group">
                                     <label for="rekening_type">Tipe Rekening</label>
                                     <select name="rekening_type" class="form-control" required>
-                                        <!-- Isi pilihan tipe rekening sesuai dengan data yang tersedia -->
                                         <option value="1">Rekening Utama</option>
                                         <option value="2">Rekening Tabungan</option>
                                         <option value="3">Rekening Investasi</option>
-                                        <!-- Tambahkan pilihan lainnya sesuai kebutuhan -->
                                     </select>
                                 </div>
 

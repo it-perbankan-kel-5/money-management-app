@@ -21,10 +21,10 @@ class BudgetingController extends Controller
             $pool->as('budget_analytic')->withToken($token)
                 ->get(API_URL . '/user/budget-analytic/');
         });
-        
+
         return view('budgeting')
-            ->with('data', $retrieveBudgeting['budget_data']->json('data'))
-            ->with('analytic', $retrieveBudgeting['budget_analytic']->json(['data']));
+        ->with('data', $retrieveBudgeting['budget_data']->json('data'))
+        ->with('analytic', $retrieveBudgeting['budget_analytic']->json(['data']));
     }
 
     public function add_budget(Request $request)
@@ -58,8 +58,8 @@ class BudgetingController extends Controller
     public function edit_budgeting($id)
     {
         $doRetrive = Http::accept('application/json')
-            ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user/budget-limit/' . $id);
+        ->withToken(session()->get('user_token'))
+        ->get(API_URL . '/user/budget-limit/' . $id);
         // dd($doRetrive);
         // dd($doRetrive->body());
         if ($doRetrive->successful()) {
@@ -129,16 +129,16 @@ class BudgetingController extends Controller
     }
 
 
-public function create_budgeting()
+    public function create_budgeting()
     {
         $doRetrive = Http::accept('application/json')
-            ->withToken(session()->get('user_token'))
-            ->get(API_URL . '/user/rekening/type/1');
+        ->withToken(session()->get('user_token'))
+        ->get(API_URL . '/user/rekening/type/1');
 
         // $doRetrive = Http::accept('application/json')
         //     ->withToken(session()->get('user_token'))
         //     ->get(API_URL . '/user/rekening');
-        
+
         // dd($doRetrive->body());
         if ($doRetrive->successful()) {
             $data = $doRetrive->json('data');
@@ -159,15 +159,4 @@ public function create_budgeting()
             return redirect('budgeting')->withErrors($doRetrive->json());
         }
     }
-
-    // public static function get_rekening_utama() {
-    //     $token = session()->get('user_token');
-
-    //     $retrieveBudgeting = Http::pool(function (Pool $pool) use ($token) {
-    //         $pool->as('rekening_utama')->withToken($token)
-    //             ->get(API_URL . '/user/rekening/type/1');
-    //     });
-
-    //     return $retrieveBudgeting['rekening_utama']->json('data');
-    // }
 }

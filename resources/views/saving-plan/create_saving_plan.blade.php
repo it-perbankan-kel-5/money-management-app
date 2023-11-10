@@ -17,15 +17,18 @@
 
                                 <div class="form-group">
                                     <label for="saving_name">Nama</label>
-                                    <input type="text" name="saving_name" class="form-control" value="{{ old('saving_name') }}" required>
+                                    <input type="text" name="saving_name" class="form-control"
+                                        value="{{ old('saving_name') }}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="rekening_id">Tipe Rekening</label>
-                                    <select name="rekening_id" class="form-control" value="{{ old('rekening_id') }}" required>
+                                    <select name="rekening_id" class="form-control" value="{{ old('rekening_id') }}"
+                                        required>
                                         <!-- Isi pilihan tipe rekening sesuai dengan data yang tersedia -->
                                         @foreach ($data as $category)
-                                            <option value="{{ $category['id'] }}">{{ $category['no_rekening'] }} - {{ $category['rekening_type'] }} - {{ $category['description'] }}</option>
+                                            <option value="{{ $category['id'] }}">{{ $category['no_rekening'] }} -
+                                                {{ $category['rekening_type'] }} - {{ $category['description'] }}</option>
                                         @endforeach
                                         <!-- Tambahkan pilihan lainnya sesuai kebutuhan -->
                                     </select>
@@ -33,22 +36,26 @@
 
                                 <div class="form-group">
                                     <label for="saving_description">Deskripsi</label>
-                                    <input type="text" name="saving_description" class="form-control" value="{{ old('saving_description') }}" required>
+                                    <input type="text" name="saving_description" class="form-control"
+                                        value="{{ old('saving_description') }}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="saving_target_amount">Target Amount</label>
-                                    <input type="number" name="saving_target_amount" class="form-control" value="{{ old('saving_target_amount') }}" required>
+                                    <input type="text" name="saving_target_amount" id="saving_target_amount"
+                                        class="form-control" value="{{ old('saving_target_amount') }}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="saving_target_date">Target Date</label>
-                                    <input type="date" name="saving_target_date" class="form-control" value="{{ old('saving_target_date') }}" required>
+                                    <input type="date" name="saving_target_date" class="form-control"
+                                        value="{{ old('saving_target_date') }}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="saving_target_date">Reminder</label>
-                                    <input type="date" name="reminder_date" class="form-control" value="{{ old('reminder_date') }}" required>
+                                    <input type="date" name="reminder_date" class="form-control"
+                                        value="{{ old('reminder_date') }}" required>
                                 </div>
 
                                 <div class="form-group d-flex justify-content-center">
@@ -64,4 +71,31 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {{-- <script>
+        // Function to format a number as Rupiah currency
+        function formatAsRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(amount);
+        }
+
+        // Get the input element
+        const inputElement = document.getElementById('saving_target_amount');
+
+        // Add an event listener to the input element to format the value
+        inputElement.addEventListener('input', function() {
+            // Remove non-digit characters and parse the input as a number
+            const inputValue = parseFloat(this.value.replace(/[^\d.]/g, ''));
+
+            // Check if the input is a valid number
+            if (!isNaN(inputValue)) {
+                // Format the input value as Rupiah and update the input field
+                this.value = formatAsRupiah(inputValue);
+            }
+        });
+    </script> --}}
 @endsection

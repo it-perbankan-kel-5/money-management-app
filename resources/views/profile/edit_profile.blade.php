@@ -12,15 +12,14 @@
                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                     alt="Avatar" class="img-fluid my-5" style="width: 90px;" />
-                                <h5>{{ $data['first_name'] }}</h5>
-                                {{-- <a class="text-primary" href="edit_profile.blade.php"><i class="far fa-edit"></i></a> --}}
+                                <h5>{{ $data['first_name'] }} {{ $data['last_name'] }}</h5>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-5">
                                     <h6 class="align-center">Profile</h6>
                                     <hr class="mt-0 mb-4">
 
-                                    <form method="POST" action="{{ url('/edit_profile/update') }}">
+                                    <form method="POST" action="{{ url('/profile/update') }}">
                                         @csrf
                                         @method('PATCH')
                                         <div class="row pt-1">

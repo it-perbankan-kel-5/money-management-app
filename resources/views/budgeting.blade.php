@@ -247,9 +247,9 @@
 </div> --}}
 
 {{-- Data analytic --}}
-    {{-- {{json_encode($analytic, JSON_PRETTY_PRINT)}} --}}
+    {{json_encode($analytic, JSON_PRETTY_PRINT)}}
 
 {{-- Add Budget --}}
-{{-- <a href="/addbudgeting"><div id="add-trigger" class=""><i class="icon-add"></i></div></a> --}}
+<a href="/budget/create"><div id="add-trigger" class=""><i class="icon-add"></i></div></a>
 
 {{-- @endsection --}}
