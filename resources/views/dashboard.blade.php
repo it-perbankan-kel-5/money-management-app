@@ -6,11 +6,12 @@
         <div class="col-md-12 grid-margin">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    @if (session()->has('user_token'))
+                    <h3 class="font-weight">Welcome back, <strong>{{ $user['first_name'] }}</strong></h3>
+                    {{-- @if (session()->has('user_token'))
                         <p>Token yang tersimpan dalam session: {{ session('user_token') }}</p>
                     @else
                         <p>Token tidak ditemukan dalam session.</p>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>
@@ -117,6 +118,7 @@
         </div>
         <div class="col-md-4 grid-margin">
             <div class="col-md-12 grid-margin stretch-card">
+                
                 <div class="card">
                     {{-- TODO - CEK LAGI BUAT FE --}}
                     <div class="card-body">
@@ -124,11 +126,12 @@
                         <p class="card-text">Limit on 1 Month</p>
                         <div class="d-flex justify-content-between">
                             <p class="text-muted" id="blCurrent"></p>
-                            <p class="text-muted" id="blTarget"></p>
+                            <p class="text-muted" id="blLimit"></p>
                         </div>
                         @php($rate = ($budget_analytic['total_current_amount'] / $budget_analytic['total_target_amount']) * 100)
                         <div class="progress" style="height: 15px">
-                            <div class="progress-bar" role="progressbar" style="width: {{round($rate)}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{round($rate)}}">
+                            <div class="progress-bar" role="progressbar" style="width: {{ round($rate) }}%"
+                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{ round($rate) }}">
                             </div>
                         </div>
                     </div>
@@ -138,95 +141,40 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Saving Plan</h4>
-                    {{-- <div class="list-wrapper list-wrapper-sm">
-                        <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                            {{-- TODO - CEK LAGI BUAT FE --}}
-                            {{-- @foreach ($saving_plan as $sp)
-                                <li class="d-flex align-items-center">
-                                    <div class="card-check">
-                                        <label class="card-check-label">
-                                            <h5>
-                                                <input class="checkbox" type="checkbox">
-                                                {{ $sp['name'] }}
-                                            </h5>
-                                            <p class="card-text">Current : Rp {{ $sp['current_amount'] }} -
-                                                {{ $sp['target_amount'] }}</p>
-                                            @php($rateSp = ($sp['current_amount'] / $sp['target_amount']) * 100)
-                                            <div class="progress progress-lg">
-                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                    style="width:{{ $rateSp }}%" aria-valuenow="{{ $rateSp }}"
-                                                    aria-valuemin="0" aria-valuemax="100">
-                                                    {{ $rateSp }}%
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </li>
-                            @endforeach --}}
-                        {{-- </ul> --}}
-                    {{-- </div> --}}
 
                     <div class="row">
-                        @foreach ($saving_plan as $sp)
-                        <div class="card-container col-md-12 mb-5">
-                            <div class="card col-md-12 mb-2 card-inverse-light">
-                                <div class="card-body text-black">
-                                    <h5>
-                                        <input class="checkbox" type="checkbox">
-                                        {{ $sp['name'] }}
-                                    </h5>
-                                    <p class="card-text">Current : Rp {{ $sp['current_amount'] }} -
-                                        {{ $sp['target_amount'] }}</p>
-                                    @php($rateSp = ($sp['current_amount'] / $sp['target_amount']) * 100)
-                                    <div class="progress progress-lg">
-                                        <div class="progress-bar bg-primary" role="progressbar"
-                                            style="width:{{ $rateSp }}%" aria-valuenow="{{ $rateSp }}"
-                                            aria-valuemin="0" aria-valuemax="100">
-                                            {{ $rateSp }}%
+                        @forelse ($saving_plan ?? [] as $sp)
+                            <div class="card-container col-md-12 mb-2">
+                                <div class="card col-md-12 mb-2 card-inverse-light">
+                                    <div class="card-body text-black">
+                                        <h5>{{ $sp['name'] ?? 'N/A' }}</h5>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="text-muted">
+                                                Rp. {{ number_format($sp['current_amount'] ?? 0, 0, ',', '.') }}
+                                            </p>
+                                            <p class="text-muted">
+                                                Rp. {{ number_format($sp['target_amount'] ?? 0, 0, ',', '.') }}
+                                            </p>
+                                        </div>
+                                        @php($rateSp = ($sp['current_amount'] ?? 0) > 0 ? ($sp['current_amount'] / $sp['target_amount']) * 100 : 0)
+                                        <div class="progress progress-xl">
+                                            <div class="progress-bar bg-info" role="progressbar"
+                                                style="width:{{ round($rateSp) }}%" aria-valuenow="{{ round($rateSp) }}"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                                {{ round($rateSp) }}%
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
+                        @empty
+                            <div class="col-md-12 text-center my-2">No saving plan available</div>
+                        @endforelse
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    {{-- <div class="theme-setting-wrapper">
-            <div id="settings-trigger"><i class="ti-settings"></i></div>
-            <div id="theme-settings" class="settings-panel">
-                <i class="settings-close ti-close"></i>
-                <p class="settings-heading">SIDEBAR SKINS</p>
-                <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-                    <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-                </div>
-                <div class="sidebar-bg-options" id="sidebar-dark-theme">
-                    <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-                </div>
-                <p class="settings-heading mt-2">HEADER SKINS</p>
-                <div class="color-tiles mx-0 px-4">
-                    <div class="tiles success"></div>
-                    <div class="tiles warning"></div>
-                    <div class="tiles danger"></div>
-                    <div class="tiles info"></div>
-                    <div class="tiles dark"></div>
-                    <div class="tiles default"></div>
-                </div>
-            </div>
-        </div> --}}
-
-    <!-- TODO - Proses data analytic -->
-    <br>
-    {{-- {{json_encode($analytic_income, JSON_PRETTY_PRINT)}} --}}
-    <br>
-    {{-- {{json_encode($analytic_expense, JSON_PRETTY_PRINT)}} --}}
-
-    <!-- TODO - Proses data analytic -->
-    <br>
-    {{-- {{ json_encode($history, JSON_PRETTY_PRINT) }} --}}
 
 @endsection
 
@@ -249,13 +197,13 @@
             const outcome = {{ $rek['balance'] }};
         @endforeach
         const blCurrent = {{ $budget_analytic['total_current_amount'] }};
-        const blTarget = {{ $budget_analytic['total_target_amount'] }};
+        const blLimit = {{ $budget_analytic['total_target_amount'] }};
 
         // Mengubah angka menjadi format Rupiah dan menaruhnya pada elemen paragraf
         document.getElementById('balance').innerHTML = formatRupiah(balance);
         document.getElementById('income').innerHTML = formatRupiah(income);
         document.getElementById('outcome').innerHTML = formatRupiah(outcome);
         document.getElementById('blCurrent').innerHTML = formatRupiah(blCurrent);
-        document.getElementById('blTarget').innerHTML = formatRupiah(blTarget);
+        document.getElementById('blLimit').innerHTML = formatRupiah(blLimit);
     </script>
 @endsection

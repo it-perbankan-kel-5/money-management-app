@@ -43,6 +43,10 @@ class DashboardController extends Controller
             $pool->as('history')
                 ->withToken($token)
                 ->get(API_URL . '/user/transaction/history/monthly');
+
+            $pool->as('user')
+                ->withToken($token)
+                ->get(API_URL . '/user');
         });
 
         return view('dashboard')
@@ -53,7 +57,7 @@ class DashboardController extends Controller
             ->with('expense', $data['expense']->json()[0]['total'])
             ->with('analytic_income', $data['analytic_income']->json('data'))
             ->with('analytic_expense', $data['analytic_expense']->json('data'))
-            ->with('history', $data['history']->json('data'));
-
+            ->with('history', $data['history']->json('data'))
+            ->with('user', $data['user']->json('data'));
     }
 }

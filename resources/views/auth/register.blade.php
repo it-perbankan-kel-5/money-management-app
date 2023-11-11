@@ -94,8 +94,9 @@
                                                 <i class="fa-solid fa-lock text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg border-left-0 border-right-0"
-                                            id="password" name="password" placeholder="Password" required>
+                                        <input type="password"
+                                            class="form-control form-control-lg border-left-0 border-right-0" id="password"
+                                            name="password" placeholder="Password" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-transparent border-left-0">
                                                 <i class="far fa-eye" id="togglePassword"
@@ -103,41 +104,42 @@
                                             </span>
                                         </div>
                                     </div>
+                                </div>
+
+                                <script>
+                                    function togglePasswordVisibility() {
+                                        var passwordField = document.getElementById("password");
+                                        var toggleIcon = document.getElementById("togglePassword");
+
+                                        if (passwordField.type === "password") {
+                                            passwordField.type = "text";
+                                            toggleIcon.classList.remove("fa-eye");
+                                            toggleIcon.classList.add("fa-eye-slash");
+                                        } else {
+                                            passwordField.type = "password";
+                                            toggleIcon.classList.remove("fa-eye-slash");
+                                            toggleIcon.classList.add("fa-eye");
+                                        }
+                                    }
+                                </script>
+
+                                <button type="submit"
+                                    class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
+                                    UP</button>
+
+                                <div class="text-center mt-4 font-weight-light">
+                                    Already have an account? <a href="/login" class="text-primary">Sign In</a>
+                                </div>
+
+                            </form>
+
                         </div>
-
-                        <script>
-                            function togglePasswordVisibility() {
-                                var passwordField = document.getElementById("password");
-                                var toggleIcon = document.getElementById("togglePassword");
-
-                                if (passwordField.type === "password") {
-                                    passwordField.type = "text";
-                                    toggleIcon.classList.remove("fa-eye");
-                                    toggleIcon.classList.add("fa-eye-slash");
-                                } else {
-                                    passwordField.type = "password";
-                                    toggleIcon.classList.remove("fa-eye-slash");
-                                    toggleIcon.classList.add("fa-eye");
-                                }
-                            }
-                        </script>
-
-                        <button type="submit"
-                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
-
-                        <div class="text-center mt-4 font-weight-light">
-                            Already have an account? <a href="/login" class="text-primary">Sign In</a>
-                        </div>
-
-                        </form>
-
                     </div>
                 </div>
+                <!-- content-wrapper ends -->
             </div>
-            <!-- content-wrapper ends -->
+            <!-- container-fluid ends -->
         </div>
-        <!-- container-fluid ends -->
-    </div>
-    <!-- container-scroller ends -->
+        <!-- container-scroller ends -->
     </div>
 @endsection
